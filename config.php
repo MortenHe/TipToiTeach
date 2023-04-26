@@ -28,9 +28,9 @@ $pages = [
         "product_id" => 803,
         "header" => "Rhythmus Übung 1",
         "names" => [
-            ["noten_lesen_02_1"],
-            ["noten_lesen_02_2"],
-            ["noten_lesen_02_3"]
+            ["rhythmus_uebung_01_1"],
+            ["rhythmus_uebung_01_2"],
+            ["rhythmus_uebung_01_3"]
         ]
     ],
     //"noten_lesen_02_1",
