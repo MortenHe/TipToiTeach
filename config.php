@@ -6,13 +6,31 @@ $audioDir = "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach";
 //Files fuer die Audio erstellt wird
 $pages = [
     "noten_lesen_01" => [
-        "product_id" => 925,
+        "product_id" => 801,
         "header" => "Noten lesen 1",
         "info" => "Spiele jede Übung erst im langsamen, dann im mittleren und zum Schluss im schnellen Tempo. Hake die Übungen ab, die du geschafft hast.",
         "names" => [
             ["noten_lesen_01_1"],
             ["noten_lesen_01_2"],
             ["noten_lesen_01_3"]
+        ]
+    ],
+    "noten_lesen_02" => [
+        "product_id" => 802,
+        "header" => "Noten lesen 2",
+        "names" => [
+            ["noten_lesen_02_1"],
+            ["noten_lesen_02_2"],
+            ["noten_lesen_02_3"]
+        ]
+    ],
+    "rhythmus_uebung_01" => [
+        "product_id" => 803,
+        "header" => "Rhythmus Übung 1",
+        "names" => [
+            ["noten_lesen_02_1"],
+            ["noten_lesen_02_2"],
+            ["noten_lesen_02_3"]
         ]
     ],
     //"noten_lesen_02_1",

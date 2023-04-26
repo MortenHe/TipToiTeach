@@ -13,10 +13,9 @@ chdir($audioDir);
 
 //Audio Dateien in verschiedenen Tempi erstellen aus Musescore Dateien
 foreach ($pages as $page => $data) {
-    echo "Create tt and pdf files for project " . $page . "\n";
-
-    //product-id dieses Produkts
     $product_id = $data["product_id"];
+    echo "Create print and sheet pdf files for project " . $product_id . "-" . $page . "\n";
+
 
     //HTML fuer TT-PDF-Datei mit Codes erstellen: Ueberschrift oben
     $html = "<table><tr><td class='t_l'><h1>" . $data["header"] . "</h1></td>";
@@ -40,12 +39,12 @@ foreach ($pages as $page => $data) {
     $html .= "<h2>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
 
     //Yaml-Datei erzeugen
-    $yaml_file = $page . ".yaml";
+    $yaml_file = $product_id . "-" . $page . ".yaml";
     $fh = fopen($yaml_file, "w");
     fwrite($fh, "product-id: " . $product_id . "\n\n");
     fwrite($fh, "comment: \"Notenbuch von Martin Helfer\"\n\n");
     fwrite($fh, "gme-lang: GERMAN\n\n");
-    fwrite($fh, "welcome: welcome\n\n");
+    fwrite($fh, "welcome: start\n\n");
     fwrite($fh, "media-path: audio/%s\n\n");
     fwrite($fh, "scripts:\n");
     //fwrite($fh, "  stop: P(stop)\n");
@@ -107,13 +106,13 @@ addTextToImage($image, $tempo);
     $mpdf->SetHTMLFooter("<small>" . gmdate("d.m.Y", time()) . "</small>");
 
     //pdf als Datei speichern
-    $mpdf->Output($page . " (codes).pdf");
+    $mpdf->Output($product_id . "-" . $page . " (codes).pdf");
 
     //Aus mscz-Datei eine PDF-Datei erzeugen
-    $mscz_file = $audioDir . "/mscz-print/" . $page . ".mscz";
-    $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $page . ' (print).pdf"';
-    echo $mscz_to_pdf_command;
-    echo shell_exec($mscz_to_pdf_command);
+    $mscz_file = $audioDir . "/mscz-sheet/" . $page . ".mscz";
+    $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+    $mscz_to_pdf_command;
+    shell_exec($mscz_to_pdf_command);
 }
 cleanDir();
 

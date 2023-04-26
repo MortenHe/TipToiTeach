@@ -5,7 +5,8 @@ emptyDirectory("{$audioDir}/Temp");
 
 //Audio Dateien in verschiedenen Tempi erstellen aus Musescore Dateien
 foreach ($pages as $page => $data) {
-  foreach ($data["names"] as $name) {
+  foreach ($data["names"] as $nameArr) {
+    $name = $nameArr[0];
 
     //mscz zu xml extrahieren
     $zip = new ZipArchive;
