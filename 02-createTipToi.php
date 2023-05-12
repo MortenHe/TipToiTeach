@@ -1,6 +1,6 @@
 <?php
 
-//TipToi-GME-Datei erstellen, dazu TipToi-PDF anhand der JSON-Config, sowie Noten-PDF aus mscz-Datei
+//TipToi-GME-Datei erstellen, dazu TipToi-PDF mit Codes und Noten-PDF aus mscz-Datei
 //count-in-Dateien muessen vorliegen
 //Druck bei 1200 dpi
 
@@ -18,12 +18,7 @@ foreach ($pages as $page => $data) {
 
 
     //HTML fuer TT-PDF-Datei mit Codes erstellen: Ueberschrift oben
-    $html = "<table><tr><td class='t_l'><h1>" . $data["header"] . "</h1></td>";
-
-    //Instrumentenbild (key / git)
-    //foreach ($project_config["instruments"] as $instrument) {
-    //$html .= "<td class='t_r instrument'><img class='instrument_img' src='../" . $instrument . ".png' /></td>";
-    //}
+    $html = "<table><tr><td class='t_c'><h1>" . $data["header"] . "</h1></td>";
 
     //Anmelde-Symbol
     $html .= "<td style='width:100px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></td>";
@@ -44,7 +39,7 @@ foreach ($pages as $page => $data) {
     fwrite($fh, "product-id: " . $product_id . "\n\n");
     fwrite($fh, "comment: \"Notenbuch von Martin Helfer\"\n\n");
     fwrite($fh, "gme-lang: GERMAN\n\n");
-    fwrite($fh, "welcome: start\n\n");
+    fwrite($fh, "welcome: start,header_{$page}\n\n");
     fwrite($fh, "media-path: audio/%s\n\n");
     fwrite($fh, "scripts:\n");
     //fwrite($fh, "  stop: P(stop)\n");
@@ -94,6 +89,8 @@ addTextToImage($image, $tempo);
  */
 
     //PDF-Datei vorbereiten
+    //TODO: Schriftart
+    //TODO: Grundschrift Bold in musescore
     $mpdf = new Mpdf([
         'default_font' => 'Grundschrift'
     ]);
@@ -103,7 +100,7 @@ addTextToImage($image, $tempo);
     $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
 
     //Footer mit aktuellem Datum
-    $mpdf->SetHTMLFooter("<small>" . gmdate("d.m.Y", time()) . "</small>");
+    //$mpdf->SetHTMLFooter("<small>" . gmdate("d.m.Y", time()) . "</small>");
 
     //pdf als Datei speichern
     $mpdf->Output($product_id . "-" . $page . " (codes).pdf");
