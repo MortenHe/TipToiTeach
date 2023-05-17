@@ -1,28 +1,60 @@
 <?php
-
-//TipToi-GME-Datei erstellen, dazu TipToi-PDF mit Codes und Noten-PDF aus mscz-Datei
-//count-in-Dateien muessen vorliegen
+// A: GME-Datei erzeugen
+//   1: YAML-Datei mit Play-Codes erstellen
+//   2: GME erzeugen mit tttool
+// B: PDF mit TipToi-Codes erzeugen
+//   1: HTML erstellen mit Header + Code images
+//   2: OID-Code-PNGs erstellen mit tttool
+//   3: Abgerundete Version von OID-Code-PNGs erstellen mit Imagick
+//   4: PDF-Datei mit MPDF
+// C: Noten-PDF aus mscz-Datei
+//   1: PDF-Datei mit Musescore
 //Druck bei 1200 dpi
 
-use Mpdf\Mpdf;
-
-require_once('config.php');
 require_once __DIR__ . '/vendor/autoload.php';
 
+//TODO: mode raus, da nur Linux (Imagick)
+$mode = "linux";
+
+use Mpdf\Mpdf;
+// Read the JSON file
+$json = file_get_contents("config.json");
+
+// Parse the JSON data
+$jsonData = json_decode($json, true);
+
+$audioDir = $mode === "linux" ? $jsonData["audioDir"] : $jsonData["audioDirWindows"];
 chdir($audioDir);
 
-//Audio Dateien in verschiedenen Tempi erstellen aus Musescore Dateien
-foreach ($pages as $page => $data) {
+$activePages = [
+    "noten_lesen_01",
+    "noten_lesen_02",
+    "noten_lesen_03",
+    "rhythmus_uebung_01",
+    "lieder_01",
+    "noten_lesen_04",
+    "noten_lesen_05",
+    "rhythmus_uebung_02",
+    "lieder_02",
+    "noten_lesen_06",
+    "noten_lesen_07",
+    "noten_lesen_08",
+    "lieder_03",
+];
+
+//HTML erstellen fuer PDF-Generierung
+foreach ($activePages as $page) {
+    $data = $jsonData["pages"][$page];
     $product_id = $data["product_id"];
     echo "Create print and sheet pdf files for project " . $product_id . "-" . $page . "\n";
 
-
     //HTML fuer TT-PDF-Datei mit Codes erstellen: Ueberschrift oben
     $html = "<table><tr><td class='t_c'><h1>" . $data["header"] . "</h1></td>";
-
-    //Anmelde-Symbol
-    $html .= "<td style='width:100px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></td>";
     $html .= "</tr></table>";
+
+    //Anmelde-Symbol rechts mit negativem Margin, damit h1 zentriert ist
+    $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
+
 
     //Info anzeigen, falls gesetzt (z.B. andere Taktart, Auftakt, etc.)
     $info = $data["info"] ?? "";
@@ -31,7 +63,7 @@ foreach ($pages as $page => $data) {
     }
 
     //Stop-Symbol
-    $html .= "<h2>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
+    $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
 
     //Yaml-Datei erzeugen
     $yaml_file = $product_id . "-" . $page . ".yaml";
@@ -42,27 +74,30 @@ foreach ($pages as $page => $data) {
     fwrite($fh, "welcome: start,header_{$page}\n\n");
     fwrite($fh, "media-path: audio/%s\n\n");
     fwrite($fh, "scripts:\n");
-    //fwrite($fh, "  stop: P(stop)\n");
 
     //Ueber Rows (=Uebungen) des Projekts gehen
+    $imgArr = [
+        "oid-{$product_id}-START",
+        "oid-{$product_id}-stop"
+    ];
     foreach ($data["names"] as $i => $name) {
 
         //Ueberschrift der Uebung ("Uebung 1" vs. "Rechte Hand")
+        //TODO: Abstand zwischen Uebungen vergroessern
         $label = $name[1] ?? "Übung " . ($i + 1);
-        $html .= "<div><h2>" . $label . "</h2>";
+        $html .= "<div><h2 style='margin-left: 10px'>" . $label . "</h2>";
 
         //Tempos einer Uebung in Tabelle sammeln
         $td_row = "";
-
-        //Ueber tempos einer Uebung gehen
-        foreach ($tempos as $tempoId => $tempoData) {
+        foreach ($jsonData["tempos"] as $tempoId => $tempoData) {
 
             //Code-Benennung fuer YAML-Datei und code-images
             $code_id = $name[0] . "_" . $tempoId;
 
             //Tempo Bild, OID-Code + Checkbox
+            $imgArr[] = "oid-{$product_id}-{$code_id}";
             $td_row .= "<td><img style='margin-left: 20px; margin-bottom: 3px' src='png/speed_" . $tempoId . ".png' /><br>";
-            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . ".png' />";
+            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
             $td_row .= "<img class='checkbox' width=20 height=20 src='" . __DIR__ . "/checkbox.svg' /></td>";
 
             //Abspielcode in YAML-Datei als Script hinterlegen
@@ -75,8 +110,19 @@ foreach ($pages as $page => $data) {
     fclose($fh);
 
     //GME-Datei und OID-Codes erstellen
-    shell_exec('tttool assemble ' . $yaml_file);
-    shell_exec('tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    //Linux version
+    shell_exec('/etc/tttool assemble ' . $yaml_file);
+    //Windows version
+    //shell_exec('tttool assemble ' . $yaml_file);
+
+    //Linux version
+    shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    //Windwos version
+    //shell_exec('tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    foreach ($imgArr as $imgName) {
+        createRoundImage($imgName);
+    }
+
 
     //Ueber Rows (=Uebungen) und Tempos des Projekts gehen und png-Bilder anpassen (Tempo ueber Code legen)
     /*
@@ -89,10 +135,8 @@ addTextToImage($image, $tempo);
  */
 
     //PDF-Datei vorbereiten
-    //TODO: Schriftart
-    //TODO: Grundschrift Bold in musescore
     $mpdf = new Mpdf([
-        'default_font' => 'Grundschrift'
+        'default_font' => 'grundschrift-regular'
     ]);
     $mpdf->img_dpi = 1200;
     $stylesheet = file_get_contents(__DIR__ . '/styles.css');
@@ -107,13 +151,34 @@ addTextToImage($image, $tempo);
 
     //Aus mscz-Datei eine PDF-Datei erzeugen
     $mscz_file = $audioDir . "/mscz-sheet/" . $page . ".mscz";
-    $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
-    $mscz_to_pdf_command;
+
+    //PDF Erzeugung: Linux Version
+    if ($mode === "linux") {
+        $mscz_to_pdf_command =   '/etc/musescore4/AppRun "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+    }
+
+    //PDF Erzeugung: Windows Version
+    else {
+        $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+    }
     shell_exec($mscz_to_pdf_command);
 }
 cleanDir();
 
+function createRoundImage($imgName)
+{
+    global $audioDir;
+    $sourceImagePath = "{$audioDir}/{$imgName}.png";
+    $imagick = new \Imagick($sourceImagePath);
+    $imagick->setImageBackgroundColor('transparent');
+    $imagick->roundCorners($imagick->getImageWidth() / 2, $imagick->getImageHeight() / 2);
+    $savePath = "{$audioDir}/{$imgName}_rounded.png";
+    $imagick->writeImage($savePath);
+    $imagick->destroy();
+}
+
 //Bilddatei mit Text ueberlagern
+/*
 function addTextToImage($image, $text, $font_size = 250)
 {
 
@@ -131,6 +196,7 @@ function addTextToImage($image, $text, $font_size = 250)
     imagepng($png_image, $image);
     imagedestroy($png_image);
 }
+*/
 
 //Dateisystem aufraeumen, temp. Dateien loeschen
 function cleanDir()

@@ -1,3 +1,7 @@
+body {
+    font-family: 'grundschrift';
+}
+
 table {
     width: 100%;
 }
@@ -10,18 +14,21 @@ td {
 }
 
 .checkbox {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     margin-left: 30px;
 }
 
 h1 {
+    font-size: 50px;
     margin-bottom: 0px;
+    font-weight: normal;
 }
 
 h2 {
-    font-size: 17px;
+    font-size: 22px;
     margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    font-weight: normal;
 }
 
 .t_l {

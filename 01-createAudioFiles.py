@@ -1,29 +1,50 @@
+# A: TTS fuer Anmeldebutton ("Noten lesen 3")
+#   1. pico2wave
+#   2. mp3 normalisieren
+
+# B: Audios fuer Uebungen erstellen aus Musescore
+#   1. mscz -> mscx
+#   2. Tempo anpassen im XML
+#   3. mp3 exportieren
+#   4. mp3 normalisieren
+#   5. Count-in file + mp3 mergen -> finale mp3
+
 import multiprocessing
 import os
 import shutil
-import sys
-import signal
+# import sys
+# import signal
 import zipfile
 from xml.etree import ElementTree as ET
 import subprocess
 import time
-from config import audioDir, tempDir, pages, tempos, timeSignature
+import json
+
+json_file = 'config.json'
+with open(json_file) as f:
+    data = json.load(f)
+
+audioDir = data["audioDir"]
+tempDir = data["tempDir"]
+timeSignature = data["timeSignature"]
+tempos = data["tempos"]
+pages = data["pages"]
 
 # Files for which audio is created
 activePages = [
-    # "noten_lesen_01",
-    # "noten_lesen_02",
-    # "noten_lesen_03",
+    "noten_lesen_01",
+    "noten_lesen_02",
+    "noten_lesen_03",
     "rhythmus_uebung_01",
     "lieder_01",
-    # "noten_lesen_04",
-    # "noten_lesen_05",
-    # "rhythmus_uebung_02",
-    # "lieder_02",
-    # "noten_lesen_06",
-    # "noten_lesen_07",
-    # "noten_lesen_08",
-    # "lieder_03",
+    "noten_lesen_04",
+    "noten_lesen_05",
+    "rhythmus_uebung_02",
+    "lieder_02",
+    "noten_lesen_06",
+    "noten_lesen_07",
+    "noten_lesen_08",
+    "lieder_03",
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"
@@ -35,10 +56,12 @@ def create_tts(tts):
 
     print(f'tts "{header}"')
 
-    # command to execute
-    cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+    # Linux version
+    cmd = f'pico2wave -l de-DE -w {tempDir}/{page}-tts.wav "{header}"'
 
-    # execute the command and suppress the output
+    # Windows version
+    # cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL,
                    stderr=subprocess.DEVNULL)
     os.system(
@@ -66,9 +89,14 @@ def create_audio(name):
         first_tempo.text = str(tempo["mult"])
         xml.write(mscxPath)
 
-        # mp3-Erzeugung
+        # mp3-Erzeugung Linux Version
         mp3Path = f'{tempDir}/{name}_{tempoName}.mp3'
-        subprocess.run(['MuseScore4.exe', mscxPath, '-o', mp3Path])
+        mscommand = f'/etc/musescore4/AppRun {mscxPath} -o {mp3Path}'
+
+        subprocess.run(mscommand, shell=True, stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+        # mp3-Erzeugung Windows Version
+        # subprocess.run(['MuseScore4.exe', mscxPath, '-o', mp3Path])
 
         # mp3 normalisieren
         mp3NormPath = f'{tempDir}/{name}_{tempoName}_norm.mp3'
@@ -107,15 +135,14 @@ if __name__ == '__main__':
         for page in activePages:
             data = pages[page]
 
-        # for page, data in pages.items():
             # Header sammeln pro Blatt fuer TTS bei TT-Anmeldung
             tts.append({
                 "page": page,
                 "header": data["header"]
             })
 
+            # Uebungen eines Blatts sammeln fuer Audio Creation aus MS
             for nameArr in data["names"]:
-                # Ueberung eines Blatts sammeln fuer Audio Creation aus MS
                 names.append(nameArr[0])
 
         # Run tts creation processes in parallel
