@@ -1,5 +1,5 @@
 01 -> Python Code läuft parallel (WSL)
-- WSL 2023:
+- WSL 2023 (wegen pico2wave):
 - Musescore 4 als AppImage nach C:\ herunterladen und extrahieren nach /etc/musescore4
   https://djobbo.hashnode.dev/a-practical-guide-to-using-appimages-on-wsl2
 
@@ -22,6 +22,7 @@
 
 
 - WSL 2023: 
+- sudo apt install mp3gain
 - sudo apt-get install php-mbstring
 - sudo apt-get install php-xml
 - tttool herunterladen und nach WSL verschieben

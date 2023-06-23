@@ -89,23 +89,32 @@ def create_audio(name):
         first_tempo.text = str(tempo["mult"])
         xml.write(mscxPath)
 
-        # mp3-Erzeugung Linux Version
-        mp3Path = f'{tempDir}/{name}_{tempoName}.mp3'
-        mscommand = f'/etc/musescore4/AppRun {mscxPath} -o {mp3Path}'
-
-        subprocess.run(mscommand, shell=True, stdout=subprocess.DEVNULL,
-                       stderr=subprocess.DEVNULL)
         # mp3-Erzeugung Windows Version
         # subprocess.run(['MuseScore4.exe', mscxPath, '-o', mp3Path])
 
-        # mp3 normalisieren
-        mp3NormPath = f'{tempDir}/{name}_{tempoName}_norm.mp3'
-        subprocess.run(['ffmpeg', '-y', '-hide_banner', '-loglevel', 'panic',
-                        '-i', mp3Path, '-af', 'loudnorm', '-ar', '44100', mp3NormPath])
+        # mp3-Erzeugung Linux Version
+        mp3Path = f'{tempDir}/{name}_{tempoName}.mp3'
+        mscommand = f'/etc/musescore4/AppRun {mscxPath} -o {mp3Path}'
+        subprocess.run(mscommand, shell=True, stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+
+        # mp3 normalisieren mit ffmpeg
+        # mp3NormPath = f'{tempDir}/{name}_{tempoName}_norm.mp3'
+        # subprocess.run(['ffmpeg', '-y', '-hide_banner', '-loglevel', 'panic',
+        #                '-i', mp3Path, '-af', 'loudnorm', '-ar', '44100', mp3NormPath])
+
+        # mp3 normalisieren mit mp3gain
+        subprocess.run(['mp3gain', '-r', mp3Path])
+
         # countInFile + mp3-File mergen
         countInFile = f'{audioDir}/count-in/{tempo["value"]}_{timeSignature}.mp3'
         finalFile = f'{audioDir}/audio/{name}_{tempoName}.mp3'
-        mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
+
+        # merge command fuer Normalisierung mit ffmpeg
+        # mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
+
+        # merge command fuer Normalisierung mit mp3gain
+        mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{countInFile}|{mp3Path}" -acodec copy {finalFile}'
         subprocess.run(mergeCommand, shell=True)
 
  # Delete all files and folders inside the directory
