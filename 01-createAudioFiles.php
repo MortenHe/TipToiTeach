@@ -5,6 +5,9 @@
 
 require_once('config.php');
 
+echo "use python";
+return;
+
 emptyDirectory("{$audioDir}/Temp");
 
 //Taktart

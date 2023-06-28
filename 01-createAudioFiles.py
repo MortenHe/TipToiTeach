@@ -32,19 +32,23 @@ pages = data["pages"]
 
 # Files for which audio is created
 activePages = [
-    "noten_lesen_01",
-    "noten_lesen_02",
-    "noten_lesen_03",
-    "rhythmus_uebung_01",
-    "lieder_01",
-    "noten_lesen_04",
-    "noten_lesen_05",
-    "rhythmus_uebung_02",
-    "lieder_02",
-    "noten_lesen_06",
-    "noten_lesen_07",
-    "noten_lesen_08",
-    "lieder_03",
+    # "noten_lesen_01",
+    # "noten_lesen_02",
+    # "noten_lesen_03",
+    # "rhythmus_uebung_01",
+    # "lieder_01",
+    # "noten_lesen_04",
+    # "noten_lesen_05",
+    # "rhythmus_uebung_02",
+    # "lieder_02",
+    # "noten_lesen_06",
+    # "noten_lesen_07",
+    # "noten_lesen_08",
+    # "lieder_03",
+    "rhythmus_uebung_03",
+    # "noten_lesen_09",
+    # "noten_lesen_10",
+
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"
@@ -104,6 +108,7 @@ def create_audio(name):
         #                '-i', mp3Path, '-af', 'loudnorm', '-ar', '44100', mp3NormPath])
 
         # mp3 normalisieren mit mp3gain
+        # TODO: Abfrage y/n weg -q?
         subprocess.run(['mp3gain', '-r', mp3Path])
 
         # countInFile + mp3-File mergen

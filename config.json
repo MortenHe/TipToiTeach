@@ -200,6 +200,45 @@
                     "Hänschen klein"
                 ]
             ]
+        },
+        "rhythmus_uebung_03": {
+            "product_id": 814,
+            "header": "Rhythmus Übung 3",
+            "names": [
+                [
+                    "rhythmus_uebung_03_1"
+                ],
+                [
+                    "rhythmus_uebung_03_2"
+                ],
+                [
+                    "rhythmus_uebung_03_3"
+                ]
+            ]
+        },
+        "noten_lesen_09": {
+            "product_id": 815,
+            "header": "Noten lesen 9",
+            "names": [
+                [
+                    "noten_lesen_09_1"
+                ],
+                [
+                    "noten_lesen_09_2"
+                ]
+            ]
+        },
+        "noten_lesen_10": {
+            "product_id": 816,
+            "header": "Noten lesen 10",
+            "names": [
+                [
+                    "noten_lesen_10_1"
+                ],
+                [
+                    "noten_lesen_10_2"
+                ]
+            ]
         }
     },
     "tempos": {

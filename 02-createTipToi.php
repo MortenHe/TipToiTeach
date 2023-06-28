@@ -27,19 +27,22 @@ $audioDir = $mode === "linux" ? $jsonData["audioDir"] : $jsonData["audioDirWindo
 chdir($audioDir);
 
 $activePages = [
-    "noten_lesen_01",
-    "noten_lesen_02",
-    "noten_lesen_03",
-    "rhythmus_uebung_01",
-    "lieder_01",
-    "noten_lesen_04",
-    "noten_lesen_05",
-    "rhythmus_uebung_02",
-    "lieder_02",
-    "noten_lesen_06",
-    "noten_lesen_07",
-    "noten_lesen_08",
-    "lieder_03",
+    //"noten_lesen_01",
+    //"noten_lesen_02",
+    //"noten_lesen_03",
+    //"rhythmus_uebung_01",
+    //"lieder_01",
+    //"noten_lesen_04",
+    //"noten_lesen_05",
+    //"rhythmus_uebung_02",
+    //"lieder_02",
+    //"noten_lesen_06",
+    //"noten_lesen_07",
+    //"noten_lesen_08",
+    //"lieder_03",
+    "rhythmus_uebung_03",
+    //"noten_lesen_09",
+    //"noten_lesen_10"
 ];
 
 //HTML erstellen fuer PDF-Generierung
