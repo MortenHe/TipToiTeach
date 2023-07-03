@@ -41,8 +41,8 @@ $activePages = [
     //"noten_lesen_08",
     //"lieder_03",
     "rhythmus_uebung_03",
-    //"noten_lesen_09",
-    //"noten_lesen_10"
+    "noten_lesen_09",
+    "noten_lesen_10"
 ];
 
 //HTML erstellen fuer PDF-Generierung

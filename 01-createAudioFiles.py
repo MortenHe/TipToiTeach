@@ -30,6 +30,9 @@ timeSignature = data["timeSignature"]
 tempos = data["tempos"]
 pages = data["pages"]
 
+# Signal vor Einzaehler
+preCountInFile = f'{audioDir}/count-in/pre_count_in.mp3'
+
 # Files for which audio is created
 activePages = [
     # "noten_lesen_01",
@@ -116,10 +119,10 @@ def create_audio(name):
         finalFile = f'{audioDir}/audio/{name}_{tempoName}.mp3'
 
         # merge command fuer Normalisierung mit ffmpeg
-        # mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
+        # mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{preCountInFile}|{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
 
         # merge command fuer Normalisierung mit mp3gain
-        mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{countInFile}|{mp3Path}" -acodec copy {finalFile}'
+        mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{preCountInFile}|{countInFile}|{mp3Path}" -acodec copy {finalFile}'
         subprocess.run(mergeCommand, shell=True)
 
  # Delete all files and folders inside the directory
