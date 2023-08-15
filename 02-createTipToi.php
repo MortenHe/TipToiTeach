@@ -13,8 +13,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-//TODO: mode raus, da nur Linux (Imagick)
-$mode = "linux";
+//windows vs. linux
+$mode = "windows";
 
 use Mpdf\Mpdf;
 // Read the JSON file
@@ -23,7 +23,7 @@ $json = file_get_contents("config.json");
 // Parse the JSON data
 $jsonData = json_decode($json, true);
 
-$audioDir = $mode === "linux" ? $jsonData["audioDir"] : $jsonData["audioDirWindows"];
+$audioDir = $jsonData["audioDir" . ucfirst($mode)];
 chdir($audioDir);
 
 $activePages = [
@@ -40,9 +40,11 @@ $activePages = [
     //"noten_lesen_07",
     //"noten_lesen_08",
     //"lieder_03",
-    "rhythmus_uebung_03",
-    "noten_lesen_09",
-    "noten_lesen_10"
+    //"rhythmus_uebung_03",
+    //"noten_lesen_09",
+    //"noten_lesen_10",
+    "noten_lesen_11",
+    "noten_lesen_12"
 ];
 
 //HTML erstellen fuer PDF-Generierung
@@ -56,17 +58,17 @@ foreach ($activePages as $page) {
     $html .= "</tr></table>";
 
     //Anmelde-Symbol rechts mit negativem Margin, damit h1 zentriert ist
-    $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
+    //$html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
+    $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></div>";
 
-
-    //Info anzeigen, falls gesetzt (z.B. andere Taktart, Auftakt, etc.)
     $info = $data["info"] ?? "";
     if ($info) {
         $html .= "<h2>Info</h2>" . $info;
     }
 
     //Stop-Symbol
-    $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
+    //$html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
+    $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
 
     //Yaml-Datei erzeugen
     $yaml_file = $product_id . "-" . $page . ".yaml";
@@ -100,7 +102,8 @@ foreach ($activePages as $page) {
             //Tempo Bild, OID-Code + Checkbox
             $imgArr[] = "oid-{$product_id}-{$code_id}";
             $td_row .= "<td><img style='margin-left: 20px; margin-bottom: 3px' src='png/speed_" . $tempoId . ".png' /><br>";
-            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
+            //$td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
+            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . ".png' />";
             $td_row .= "<img class='checkbox' width=20 height=20 src='" . __DIR__ . "/checkbox.svg' /></td>";
 
             //Abspielcode in YAML-Datei als Script hinterlegen
@@ -112,20 +115,30 @@ foreach ($activePages as $page) {
     }
     fclose($fh);
 
-    //GME-Datei und OID-Codes erstellen
+    //GME-Datei
     //Linux version
-    shell_exec('/etc/tttool assemble ' . $yaml_file);
-    //Windows version
-    //shell_exec('tttool assemble ' . $yaml_file);
-
-    //Linux version
-    shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
-    //Windwos version
-    //shell_exec('tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
-    foreach ($imgArr as $imgName) {
-        createRoundImage($imgName);
+    if ($mode === "linuxs") {
+        shell_exec('/etc/tttool assemble ' . $yaml_file);
     }
 
+    //Windows version
+    else {
+        shell_exec('tttool assemble ' . $yaml_file);
+    }
+
+    //OID-Codes
+    //Linux version
+    if ($mode === "linuxs") {
+        shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    }
+
+    //Windwos version
+    else {
+        shell_exec('tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    }
+    foreach ($imgArr as $imgName) {
+        //createRoundImage($imgName);
+    }
 
     //Ueber Rows (=Uebungen) und Tempos des Projekts gehen und png-Bilder anpassen (Tempo ueber Code legen)
     /*
@@ -155,12 +168,14 @@ addTextToImage($image, $tempo);
     //Aus mscz-Datei eine PDF-Datei erzeugen
     $mscz_file = $audioDir . "/mscz-sheet/" . $page . ".mscz";
 
-    //PDF Erzeugung: Linux Version
+    //PDF Erzeugung
+    //Linux Version
     if ($mode === "linux") {
-        $mscz_to_pdf_command =   '/etc/musescore4/AppRun "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+        $mscz_to_pdf_command =   '/etc/musescore4/squashfs-root/AppRun "' . $mscz_file . '" -o "' . $audioDir
+            . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }
 
-    //PDF Erzeugung: Windows Version
+    //Windows Version
     else {
         $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }

@@ -1,6 +1,6 @@
 {
-    "audioDir": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
-    "tempDir": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
+    "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
+    "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
     "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirWindows": "C:/Users/Martin/Desktop/media/TipToiTeachTemp",
     "pages": {
@@ -237,6 +237,30 @@
                 ],
                 [
                     "noten_lesen_10_2"
+                ]
+            ]
+        },
+        "noten_lesen_11": {
+            "product_id": 817,
+            "header": "Noten lesen 11",
+            "names": [
+                [
+                    "noten_lesen_11_1"
+                ],
+                [
+                    "noten_lesen_11_2"
+                ]
+            ]
+        },
+        "noten_lesen_12": {
+            "product_id": 818,
+            "header": "Noten lesen 12",
+            "names": [
+                [
+                    "noten_lesen_12_1"
+                ],
+                [
+                    "noten_lesen_12_2"
                 ]
             ]
         }

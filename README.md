@@ -1,6 +1,19 @@
+15.08.2023
+01 -> Windwos (WSL Musescore 4.1 geht nicht)
+02 -> Windows (WSL Musescore 4.1 geht nicht)
+
+Idee
+roundedImage + pico2wave in eigene Skripte
+
+
+
 01 -> Python Code läuft parallel (WSL)
 - WSL 2023 (wegen pico2wave):
 - Musescore 4 als AppImage nach C:\ herunterladen und extrahieren nach /etc/musescore4
+- ./Musescore.4.0..... --appimage-extract
+- mkdir /etc/musescore4
+- mv ./squashfs-root/ /etc/musescore4
+
   https://djobbo.hashnode.dev/a-practical-guide-to-using-appimages-on-wsl2
 
 - Soundfont fuer psst, Pau - se etc. in passenden Ordner kopieren
