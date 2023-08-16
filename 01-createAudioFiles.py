@@ -20,12 +20,15 @@ import subprocess
 import time
 import json
 
+# windows vs. linux
+mode = 'linux'
+
 json_file = 'config.json'
 with open(json_file) as f:
     data = json.load(f)
 
-audioDir = data["audioDir"]
-tempDir = data["tempDir"]
+audioDir = data["audioDir" + str.capitalize(mode)]
+tempDir = data["tempDir" + str.capitalize(mode)]
 timeSignature = data["timeSignature"]
 tempos = data["tempos"]
 pages = data["pages"]
@@ -51,7 +54,7 @@ activePages = [
     # "rhythmus_uebung_03",
     # "noten_lesen_09",
     # "noten_lesen_10",
-    # "noten_lesen_11",
+    "noten_lesen_11",
     "noten_lesen_12",
 
 ]
@@ -65,14 +68,18 @@ def create_tts(tts):
 
     print(f'tts "{header}"')
 
-    # Linux version
-    # cmd = f'pico2wave -l de-DE -w {tempDir}/{page}-tts.wav "{header}"'
-
     # Windows version
-    cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+    if (mode == "windows"):
+        cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+
+    # Linux version
+    elif (mode == 'linux'):
+        cmd = f'pico2wave -l de-DE -w {tempDir}/{page}-tts.wav "{header}"'
 
     subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL,
                    stderr=subprocess.DEVNULL)
+
+    # normalize
     os.system(
         f'ffmpeg -i {tempDir}/{page}-tts.wav -af equalizer=f=300:t=h:width=200:g=-30 {tempDir}/{page}-tts-eq.wav -hide_banner -loglevel error -y')
     os.system(
@@ -99,14 +106,16 @@ def create_audio(name):
         xml.write(mscxPath)
         mp3Path = f'{tempDir}/{name}_{tempoName}.mp3'
 
-        # mp3-Erzeugung Windows Version
-        subprocess.run(['MuseScore4.exe', mscxPath, '-o', mp3Path])
+        # mp3-Erzeugung
+        # Windows version
+        if (mode == 'windows'):
+            subprocess.run(['MuseScore4.exe', mscxPath, '-o', mp3Path])
 
-        # mp3-Erzeugung Linux Version
-
-        # mscommand = f'/etc/musescore4/squashfs-root/AppRun {mscxPath} -o {mp3Path}'
-        # subprocess.run(mscommand, shell=True, stdout=subprocess.DEVNULL,
-        #               stderr=subprocess.DEVNULL)
+        # Linux fersion
+        elif (mode == 'linux'):
+            mscommand = f'/etc/musescore4/AppRun {mscxPath} -o {mp3Path}'
+            subprocess.run(mscommand, shell=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # mp3 normalisieren mit ffmpeg
         # mp3NormPath = f'{tempDir}/{name}_{tempoName}_norm.mp3'

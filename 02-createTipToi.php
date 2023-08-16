@@ -14,7 +14,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 //windows vs. linux
-$mode = "windows";
+$mode = "linux";
 
 use Mpdf\Mpdf;
 // Read the JSON file
@@ -115,26 +115,26 @@ foreach ($activePages as $page) {
     }
     fclose($fh);
 
-    //GME-Datei
-    //Linux version
-    if ($mode === "linuxs") {
-        shell_exec('/etc/tttool assemble ' . $yaml_file);
-    }
-
+    //GME-Datei erstellen
     //Windows version
-    else {
+    if ($mode === "windows") {
         shell_exec('tttool assemble ' . $yaml_file);
     }
 
-    //OID-Codes
     //Linux version
-    if ($mode === "linuxs") {
-        shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    else {
+        shell_exec('/etc/tttool assemble ' . $yaml_file);
     }
 
-    //Windwos version
-    else {
+    //OID-Codes
+    //Windows version
+    if ($mode === "windows") {
         shell_exec('tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
+    }
+
+    //Linux version
+    else {
+        shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
     }
     foreach ($imgArr as $imgName) {
         //createRoundImage($imgName);
@@ -169,15 +169,15 @@ addTextToImage($image, $tempo);
     $mscz_file = $audioDir . "/mscz-sheet/" . $page . ".mscz";
 
     //PDF Erzeugung
-    //Linux Version
-    if ($mode === "linux") {
-        $mscz_to_pdf_command =   '/etc/musescore4/squashfs-root/AppRun "' . $mscz_file . '" -o "' . $audioDir
-            . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+    //Windows Version 
+    if ($mode === "windows") {
+        $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }
 
-    //Windows Version
+    //Linux Version
     else {
-        $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+        $mscz_to_pdf_command =   '/etc/musescore4/AppRun "' . $mscz_file . '" -o "' . $audioDir
+            . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }
     shell_exec($mscz_to_pdf_command);
 }
