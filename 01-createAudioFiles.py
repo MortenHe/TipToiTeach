@@ -54,9 +54,9 @@ activePages = [
     # "rhythmus_uebung_03",
     # "noten_lesen_09",
     # "noten_lesen_10",
-    "noten_lesen_11",
-    "noten_lesen_12",
-
+    # "noten_lesen_11",
+    # "noten_lesen_12",
+    "lieder_04",
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"

@@ -13,10 +13,15 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-//windows vs. linux
-$mode = "linux";
-
 use Mpdf\Mpdf;
+
+//windows vs. linux
+$mode = "windows";
+
+//sollen runde Bilder generiert werden?
+$roundedImages = false;
+
+
 // Read the JSON file
 $json = file_get_contents("config.json");
 
@@ -43,8 +48,9 @@ $activePages = [
     //"rhythmus_uebung_03",
     //"noten_lesen_09",
     //"noten_lesen_10",
-    "noten_lesen_11",
-    "noten_lesen_12"
+    #"noten_lesen_11",
+    #"noten_lesen_12",
+    "lieder_04",
 ];
 
 //HTML erstellen fuer PDF-Generierung
@@ -58,8 +64,11 @@ foreach ($activePages as $page) {
     $html .= "</tr></table>";
 
     //Anmelde-Symbol rechts mit negativem Margin, damit h1 zentriert ist
-    //$html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
-    $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></div>";
+    if ($roundedImages) {
+        $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
+    } else {
+        $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></div>";
+    }
 
     $info = $data["info"] ?? "";
     if ($info) {
@@ -67,8 +76,11 @@ foreach ($activePages as $page) {
     }
 
     //Stop-Symbol
-    //$html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
-    $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
+    if ($roundedImages) {
+        $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
+    } else {
+        $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
+    }
 
     //Yaml-Datei erzeugen
     $yaml_file = $product_id . "-" . $page . ".yaml";
@@ -99,11 +111,18 @@ foreach ($activePages as $page) {
             //Code-Benennung fuer YAML-Datei und code-images
             $code_id = $name[0] . "_" . $tempoId;
 
-            //Tempo Bild, OID-Code + Checkbox
+            //Tempo Bild
             $imgArr[] = "oid-{$product_id}-{$code_id}";
             $td_row .= "<td><img style='margin-left: 20px; margin-bottom: 3px' src='png/speed_" . $tempoId . ".png' /><br>";
-            //$td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
-            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . ".png' />";
+
+            //OID-Code
+            if ($roundedImages) {
+                $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
+            } else {
+                $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . ".png' />";
+            }
+
+            //Checkbox
             $td_row .= "<img class='checkbox' width=20 height=20 src='" . __DIR__ . "/checkbox.svg' /></td>";
 
             //Abspielcode in YAML-Datei als Script hinterlegen
@@ -136,8 +155,12 @@ foreach ($activePages as $page) {
     else {
         shell_exec('/etc/tttool oid-codes ' . $yaml_file . ' --pixel-size 5 --code-dim 20');
     }
-    foreach ($imgArr as $imgName) {
-        //createRoundImage($imgName);
+
+    //Runde Bilder erstellen
+    if ($roundedImages) {
+        foreach ($imgArr as $imgName) {
+            createRoundImage($imgName);
+        }
     }
 
     //Ueber Rows (=Uebungen) und Tempos des Projekts gehen und png-Bilder anpassen (Tempo ueber Code legen)

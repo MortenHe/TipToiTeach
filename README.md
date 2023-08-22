@@ -1,3 +1,16 @@
+21.08.2023
+Skript 01 und 02 geht mit Windows
+Imagick Windows 10 + PHP 8.2 geht
+
+(zum Zeitpunkt keine Version für 8.2 vorhanden, daher Links unten)
+https://mlocati.github.io/articles/php-windows-imagick.html
+
+
+https://github.com/Imagick/imagick/issues/573#issuecomment-1431773928
+https://github.com/Imagick/imagick/issues/573#issuecomment-1578638424
+https://stackoverflow.com/questions/75138367/php-warning-php-startup-imagick-unable-to-initialize-module
+
+
 16.08.2023
 01 - WSL 4.1 geht
 02 - WSL 4.1 geht 

@@ -263,6 +263,16 @@
                     "noten_lesen_12_2"
                 ]
             ]
+        },
+        "lieder_04": {
+            "product_id": 819,
+            "header": "Lieder 4",
+            "names": [
+                [
+                    "lieder_04_1_das_wetterlied",
+                    "Das Wetterlied"
+                ]
+            ]
         }
     },
     "tempos": {
