@@ -20,13 +20,11 @@ import subprocess
 import time
 import json
 
-# windows vs. linux
-mode = 'linux'
-
-json_file = 'config.json'
-with open(json_file) as f:
+with open('config.json') as f:
     data = json.load(f)
 
+# windows vs. linux
+mode = data["mode"]
 audioDir = data["audioDir" + str.capitalize(mode)]
 tempDir = data["tempDir" + str.capitalize(mode)]
 timeSignature = data["timeSignature"]
@@ -56,7 +54,10 @@ activePages = [
     # "noten_lesen_10",
     # "noten_lesen_11",
     # "noten_lesen_12",
-    "lieder_04",
+    # "lieder_04",
+    # "rhythmus_uebung_04",
+    # "noten_lesen_13",
+    "lieder_05",
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"

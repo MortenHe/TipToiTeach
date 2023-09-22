@@ -15,12 +15,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Mpdf\Mpdf;
 
-//windows vs. linux
-$mode = "windows";
-
 //sollen runde Bilder generiert werden?
 $roundedImages = false;
-
 
 // Read the JSON file
 $json = file_get_contents("config.json");
@@ -28,6 +24,8 @@ $json = file_get_contents("config.json");
 // Parse the JSON data
 $jsonData = json_decode($json, true);
 
+//windows vs. linux
+$mode = $jsonData["mode"];
 $audioDir = $jsonData["audioDir" . ucfirst($mode)];
 chdir($audioDir);
 
@@ -50,7 +48,10 @@ $activePages = [
     //"noten_lesen_10",
     #"noten_lesen_11",
     #"noten_lesen_12",
-    "lieder_04",
+    #"lieder_04",
+    #"rhythmus_uebung_04",
+    #"noten_lesen_13",
+    "lieder_05",
 ];
 
 //HTML erstellen fuer PDF-Generierung

@@ -1,4 +1,5 @@
 {
+    "mode": "windows",
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
     "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
@@ -271,6 +272,43 @@
                 [
                     "lieder_04_1_das_wetterlied",
                     "Das Wetterlied"
+                ]
+            ]
+        },
+        "rhythmus_uebung_04": {
+            "product_id": 820,
+            "header": "Rhythmus Übung 4",
+            "names": [
+                [
+                    "rhythmus_uebung_04_1"
+                ],
+                [
+                    "rhythmus_uebung_04_2"
+                ],
+                [
+                    "rhythmus_uebung_04_3"
+                ]
+            ]
+        },
+        "noten_lesen_13": {
+            "product_id": 821,
+            "header": "Noten lesen 13",
+            "names": [
+                [
+                    "noten_lesen_13_1"
+                ],
+                [
+                    "noten_lesen_13_2"
+                ]
+            ]
+        },
+        "lieder_05": {
+            "product_id": 822,
+            "header": "Lieder 5",
+            "names": [
+                [
+                    "lieder_05_1_one_two_three_four",
+                    "One, Two, Three, Four"
                 ]
             ]
         }
