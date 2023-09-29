@@ -20,11 +20,12 @@ import subprocess
 import time
 import json
 
-with open('config.json') as f:
+with open('config.json', encoding='utf-8') as f:
     data = json.load(f)
 
 # windows vs. linux
 mode = data["mode"]
+instrument = data["instrument"]
 audioDir = data["audioDir" + str.capitalize(mode)]
 tempDir = data["tempDir" + str.capitalize(mode)]
 timeSignature = data["timeSignature"]
@@ -36,6 +37,7 @@ preCountInFile = f'{audioDir}/count-in/pre_count_in.mp3'
 
 # Files for which audio is created
 activePages = [
+    # piano
     # "noten_lesen_01",
     # "noten_lesen_02",
     # "noten_lesen_03",
@@ -57,7 +59,10 @@ activePages = [
     # "lieder_04",
     # "rhythmus_uebung_04",
     # "noten_lesen_13",
-    "lieder_05",
+    # "lieder_05",
+
+    # drums
+    "rhythmus_uebung_01",
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"
@@ -84,7 +89,7 @@ def create_tts(tts):
     os.system(
         f'ffmpeg -i {tempDir}/{page}-tts.wav -af equalizer=f=300:t=h:width=200:g=-30 {tempDir}/{page}-tts-eq.wav -hide_banner -loglevel error -y')
     os.system(
-        f'ffmpeg -i {tempDir}/{page}-tts-eq.wav -af acompressor=threshold=-11dB:ratio=9:attack=200:release=1000:makeup=8 {audioDir}/audio/header_{page}.mp3 -hide_banner -loglevel error -y')
+        f'ffmpeg -i {tempDir}/{page}-tts-eq.wav -af acompressor=threshold=-11dB:ratio=9:attack=200:release=1000:makeup=8 {audioDir}/audio/{instrument}/header_{page}.mp3 -hide_banner -loglevel error -y')
 
 # Audio files aus Musescore generieren in div. Tempi
 
@@ -93,7 +98,7 @@ def create_audio(name):
     print(f'audio "{name}"')
 
     # mscz zu xml extrahieren
-    with zipfile.ZipFile(f'{audioDir}/mscz-audio/{name}.mscz') as zip:
+    with zipfile.ZipFile(f'{audioDir}/mscz-audio/{instrument}/{name}.mscz') as zip:
         zip.extractall(f'{tempDir}/{name}')
 
     # XML laden, hier kann man das Tempo aendern
@@ -129,7 +134,7 @@ def create_audio(name):
 
         # countInFile + mp3-File mergen
         countInFile = f'{audioDir}/count-in/{tempo["value"]}_{timeSignature}.mp3'
-        finalFile = f'{audioDir}/audio/{name}_{tempoName}.mp3'
+        finalFile = f'{audioDir}/audio/{instrument}/{name}_{tempoName}.mp3'
 
         # merge command fuer Normalisierung mit ffmpeg
         # mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{preCountInFile}|{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
@@ -163,7 +168,7 @@ if __name__ == '__main__':
         tts = []
         names = []
         for page in activePages:
-            data = pages[page]
+            data = pages[instrument][page]
 
             # Header sammeln pro Blatt fuer TTS bei TT-Anmeldung
             tts.append({

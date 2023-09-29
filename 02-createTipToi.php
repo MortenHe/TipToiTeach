@@ -20,16 +20,16 @@ $roundedImages = false;
 
 // Read the JSON file
 $json = file_get_contents("config.json");
-
-// Parse the JSON data
 $jsonData = json_decode($json, true);
 
 //windows vs. linux
 $mode = $jsonData["mode"];
+$instrument = $jsonData["instrument"];
 $audioDir = $jsonData["audioDir" . ucfirst($mode)];
 chdir($audioDir);
 
 $activePages = [
+    #piano
     //"noten_lesen_01",
     //"noten_lesen_02",
     //"noten_lesen_03",
@@ -46,17 +46,20 @@ $activePages = [
     //"rhythmus_uebung_03",
     //"noten_lesen_09",
     //"noten_lesen_10",
-    #"noten_lesen_11",
+    //"noten_lesen_11",
     #"noten_lesen_12",
     #"lieder_04",
     #"rhythmus_uebung_04",
     #"noten_lesen_13",
-    "lieder_05",
+    #"lieder_05",
+
+    #drums
+    "rhythmus_uebung_01",
 ];
 
 //HTML erstellen fuer PDF-Generierung
 foreach ($activePages as $page) {
-    $data = $jsonData["pages"][$page];
+    $data = $jsonData["pages"][$instrument][$page];
     $product_id = $data["product_id"];
     echo "Create print and sheet pdf files for project " . $product_id . "-" . $page . "\n";
 
@@ -90,7 +93,7 @@ foreach ($activePages as $page) {
     fwrite($fh, "comment: \"Notenbuch von Martin Helfer\"\n\n");
     fwrite($fh, "gme-lang: GERMAN\n\n");
     fwrite($fh, "welcome: start,header_{$page}\n\n");
-    fwrite($fh, "media-path: audio/%s\n\n");
+    fwrite($fh, "media-path: audio/$instrument/%s\n\n");
     fwrite($fh, "scripts:\n");
 
     //Ueber Rows (=Uebungen) des Projekts gehen
@@ -146,6 +149,9 @@ foreach ($activePages as $page) {
         shell_exec('/etc/tttool assemble ' . $yaml_file);
     }
 
+    //move gme to export folder
+    rename("{$audioDir}/{$product_id}-{$page}.gme", "{$audioDir}/export/{$instrument}/{$product_id}-{$page}.gme");
+
     //OID-Codes
     //Windows version
     if ($mode === "windows") {
@@ -187,21 +193,21 @@ addTextToImage($image, $tempo);
     //$mpdf->SetHTMLFooter("<small>" . gmdate("d.m.Y", time()) . "</small>");
 
     //pdf als Datei speichern
-    $mpdf->Output($product_id . "-" . $page . " (codes).pdf");
+    $mpdf->Output("{$audioDir}/export/{$instrument}/{$product_id}-{$page} (codes).pdf");
 
     //Aus mscz-Datei eine PDF-Datei erzeugen
-    $mscz_file = $audioDir . "/mscz-sheet/" . $page . ".mscz";
+    $mscz_file = $audioDir . "/mscz-sheet/" . $instrument . "/" . $page . ".mscz";
 
     //PDF Erzeugung
     //Windows Version 
     if ($mode === "windows") {
-        $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+        $mscz_to_pdf_command = 'MuseScore4.exe "' . $mscz_file . '" -o "' . $audioDir . "/export/" . $instrument . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }
 
     //Linux Version
     else {
         $mscz_to_pdf_command =   '/etc/musescore4/AppRun "' . $mscz_file . '" -o "' . $audioDir
-            . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
+            . "/export/" . $instrument . "/" . $product_id . "-" . $page . ' (sheet).pdf"';
     }
     shell_exec($mscz_to_pdf_command);
 }
@@ -209,12 +215,12 @@ cleanDir();
 
 function createRoundImage($imgName)
 {
-    global $audioDir;
-    $sourceImagePath = "{$audioDir}/{$imgName}.png";
+    global $audioDir, $instrument;
+    $sourceImagePath = "{$audioDir}/{$instrument}/{$imgName}.png";
     $imagick = new \Imagick($sourceImagePath);
     $imagick->setImageBackgroundColor('transparent');
     $imagick->roundCorners($imagick->getImageWidth() / 2, $imagick->getImageHeight() / 2);
-    $savePath = "{$audioDir}/{$imgName}_rounded.png";
+    $savePath = "{$audioDir}/{$instrument}/{$imgName}_rounded.png";
     $imagick->writeImage($savePath);
     $imagick->destroy();
 }

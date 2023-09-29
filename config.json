@@ -1,316 +1,339 @@
 {
     "mode": "windows",
+    "instrument": "drums",
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
     "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirWindows": "C:/Users/Martin/Desktop/media/TipToiTeachTemp",
     "pages": {
-        "noten_lesen_01": {
-            "product_id": 801,
-            "header": "Noten lesen 1",
-            "info": "Spiele jede Übung erst im langsamen, dann im mittleren und zum Schluss im schnellen Tempo.<br>Hake die Übungen ab, die du geschafft hast.<br>Vor jeder Übung werden 4 Schläge eingezählt.",
-            "names": [
-                [
-                    "noten_lesen_01_1"
-                ],
-                [
-                    "noten_lesen_01_2"
-                ],
-                [
-                    "noten_lesen_01_3"
+        "piano": {
+            "noten_lesen_01": {
+                "product_id": 801,
+                "header": "Noten lesen 1",
+                "info": "Spiele jede Übung erst im langsamen, dann im mittleren und zum Schluss im schnellen Tempo.<br>Hake die Übungen ab, die du geschafft hast.<br>Vor jeder Übung werden 4 Schläge eingezählt.",
+                "names": [
+                    [
+                        "noten_lesen_01_1"
+                    ],
+                    [
+                        "noten_lesen_01_2"
+                    ],
+                    [
+                        "noten_lesen_01_3"
+                    ]
                 ]
-            ]
+            },
+            "noten_lesen_02": {
+                "product_id": 802,
+                "header": "Noten lesen 2",
+                "names": [
+                    [
+                        "noten_lesen_02_1"
+                    ],
+                    [
+                        "noten_lesen_02_2"
+                    ],
+                    [
+                        "noten_lesen_02_3"
+                    ]
+                ]
+            },
+            "noten_lesen_03": {
+                "product_id": 803,
+                "header": "Noten lesen 3",
+                "names": [
+                    [
+                        "noten_lesen_03_1"
+                    ],
+                    [
+                        "noten_lesen_03_2"
+                    ],
+                    [
+                        "noten_lesen_03_3"
+                    ]
+                ]
+            },
+            "rhythmus_uebung_01": {
+                "product_id": 804,
+                "header": "Rhythmus Übung 1",
+                "names": [
+                    [
+                        "rhythmus_uebung_01_1"
+                    ],
+                    [
+                        "rhythmus_uebung_01_2"
+                    ],
+                    [
+                        "rhythmus_uebung_01_3"
+                    ]
+                ]
+            },
+            "lieder_01": {
+                "product_id": 805,
+                "header": "Lieder 1",
+                "names": [
+                    [
+                        "lieder_01_1_wo_bist_du",
+                        "Wo bist du?"
+                    ],
+                    [
+                        "lieder_01_2_lauf_lauf",
+                        "Lauf, lauf"
+                    ],
+                    [
+                        "lieder_01_3_ich_will_in_den_garten_gehn",
+                        "Ich will in den Garten geh'n"
+                    ]
+                ]
+            },
+            "noten_lesen_04": {
+                "product_id": 806,
+                "header": "Noten lesen 4",
+                "names": [
+                    [
+                        "noten_lesen_04_1"
+                    ],
+                    [
+                        "noten_lesen_04_2"
+                    ],
+                    [
+                        "noten_lesen_04_3"
+                    ]
+                ]
+            },
+            "noten_lesen_05": {
+                "product_id": 807,
+                "header": "Noten lesen 5",
+                "names": [
+                    [
+                        "noten_lesen_05_1"
+                    ],
+                    [
+                        "noten_lesen_05_2"
+                    ],
+                    [
+                        "noten_lesen_05_3"
+                    ]
+                ]
+            },
+            "rhythmus_uebung_02": {
+                "product_id": 808,
+                "header": "Rhythmus Übung 2",
+                "names": [
+                    [
+                        "rhythmus_uebung_02_1"
+                    ],
+                    [
+                        "rhythmus_uebung_02_2"
+                    ],
+                    [
+                        "rhythmus_uebung_02_3"
+                    ]
+                ]
+            },
+            "lieder_02": {
+                "product_id": 809,
+                "header": "Lieder 2",
+                "names": [
+                    [
+                        "lieder_02_1_ding_dong_ding",
+                        "Ding Dong Ding"
+                    ],
+                    [
+                        "lieder_02_2_auf_den_berg",
+                        "Auf den Berg"
+                    ],
+                    [
+                        "lieder_02_3_ich_bin_muede",
+                        "Ich bin müde"
+                    ]
+                ]
+            },
+            "noten_lesen_06": {
+                "product_id": 810,
+                "header": "Noten lesen 6",
+                "names": [
+                    [
+                        "noten_lesen_06_1"
+                    ],
+                    [
+                        "noten_lesen_06_2"
+                    ],
+                    [
+                        "noten_lesen_06_3"
+                    ]
+                ]
+            },
+            "noten_lesen_07": {
+                "product_id": 811,
+                "header": "Noten lesen 7",
+                "names": [
+                    [
+                        "noten_lesen_07_1"
+                    ],
+                    [
+                        "noten_lesen_07_2"
+                    ],
+                    [
+                        "noten_lesen_07_3"
+                    ]
+                ]
+            },
+            "noten_lesen_08": {
+                "product_id": 812,
+                "header": "Noten lesen 8",
+                "names": [
+                    [
+                        "noten_lesen_08_1"
+                    ],
+                    [
+                        "noten_lesen_08_2"
+                    ],
+                    [
+                        "noten_lesen_08_3"
+                    ]
+                ]
+            },
+            "lieder_03": {
+                "product_id": 813,
+                "header": "Lieder 3",
+                "names": [
+                    [
+                        "lieder_03_1_haenschen_klein",
+                        "Hänschen klein"
+                    ]
+                ]
+            },
+            "rhythmus_uebung_03": {
+                "product_id": 814,
+                "header": "Rhythmus Übung 3",
+                "names": [
+                    [
+                        "rhythmus_uebung_03_1"
+                    ],
+                    [
+                        "rhythmus_uebung_03_2"
+                    ],
+                    [
+                        "rhythmus_uebung_03_3"
+                    ]
+                ]
+            },
+            "noten_lesen_09": {
+                "product_id": 815,
+                "header": "Noten lesen 9",
+                "names": [
+                    [
+                        "noten_lesen_09_1"
+                    ],
+                    [
+                        "noten_lesen_09_2"
+                    ]
+                ]
+            },
+            "noten_lesen_10": {
+                "product_id": 816,
+                "header": "Noten lesen 10",
+                "names": [
+                    [
+                        "noten_lesen_10_1"
+                    ],
+                    [
+                        "noten_lesen_10_2"
+                    ]
+                ]
+            },
+            "noten_lesen_11": {
+                "product_id": 817,
+                "header": "Noten lesen 11",
+                "names": [
+                    [
+                        "noten_lesen_11_1"
+                    ],
+                    [
+                        "noten_lesen_11_2"
+                    ]
+                ]
+            },
+            "noten_lesen_12": {
+                "product_id": 818,
+                "header": "Noten lesen 12",
+                "names": [
+                    [
+                        "noten_lesen_12_1"
+                    ],
+                    [
+                        "noten_lesen_12_2"
+                    ]
+                ]
+            },
+            "lieder_04": {
+                "product_id": 819,
+                "header": "Lieder 4",
+                "names": [
+                    [
+                        "lieder_04_1_das_wetterlied",
+                        "Das Wetterlied"
+                    ]
+                ]
+            },
+            "rhythmus_uebung_04": {
+                "product_id": 820,
+                "header": "Rhythmus Übung 4",
+                "names": [
+                    [
+                        "rhythmus_uebung_04_1"
+                    ],
+                    [
+                        "rhythmus_uebung_04_2"
+                    ],
+                    [
+                        "rhythmus_uebung_04_3"
+                    ]
+                ]
+            },
+            "noten_lesen_13": {
+                "product_id": 821,
+                "header": "Noten lesen 13",
+                "names": [
+                    [
+                        "noten_lesen_13_1"
+                    ],
+                    [
+                        "noten_lesen_13_2"
+                    ]
+                ]
+            },
+            "lieder_05": {
+                "product_id": 822,
+                "header": "Lieder 5",
+                "names": [
+                    [
+                        "lieder_05_1_one_two_three_four",
+                        "One, Two, Three, Four"
+                    ]
+                ]
+            }
         },
-        "noten_lesen_02": {
-            "product_id": 802,
-            "header": "Noten lesen 2",
-            "names": [
-                [
-                    "noten_lesen_02_1"
-                ],
-                [
-                    "noten_lesen_02_2"
-                ],
-                [
-                    "noten_lesen_02_3"
+        "drums": {
+            "rhythmus_uebung_01": {
+                "product_id": 901,
+                "header": "Rhythmus Übung 1",
+                "names": [
+                    [
+                        "rhythmus_uebung_01_1"
+                    ],
+                    [
+                        "rhythmus_uebung_01_2"
+                    ],
+                    [
+                        "rhythmus_uebung_01_3"
+                    ],
+                    [
+                        "rhythmus_uebung_01_4"
+                    ]
                 ]
-            ]
-        },
-        "noten_lesen_03": {
-            "product_id": 803,
-            "header": "Noten lesen 3",
-            "names": [
-                [
-                    "noten_lesen_03_1"
-                ],
-                [
-                    "noten_lesen_03_2"
-                ],
-                [
-                    "noten_lesen_03_3"
-                ]
-            ]
-        },
-        "rhythmus_uebung_01": {
-            "product_id": 804,
-            "header": "Rhythmus Übung 1",
-            "names": [
-                [
-                    "rhythmus_uebung_01_1"
-                ],
-                [
-                    "rhythmus_uebung_01_2"
-                ],
-                [
-                    "rhythmus_uebung_01_3"
-                ]
-            ]
-        },
-        "lieder_01": {
-            "product_id": 805,
-            "header": "Lieder 1",
-            "names": [
-                [
-                    "lieder_01_1_wo_bist_du",
-                    "Wo bist du?"
-                ],
-                [
-                    "lieder_01_2_lauf_lauf",
-                    "Lauf, lauf"
-                ],
-                [
-                    "lieder_01_3_ich_will_in_den_garten_gehn",
-                    "Ich will in den Garten geh'n"
-                ]
-            ]
-        },
-        "noten_lesen_04": {
-            "product_id": 806,
-            "header": "Noten lesen 4",
-            "names": [
-                [
-                    "noten_lesen_04_1"
-                ],
-                [
-                    "noten_lesen_04_2"
-                ],
-                [
-                    "noten_lesen_04_3"
-                ]
-            ]
-        },
-        "noten_lesen_05": {
-            "product_id": 807,
-            "header": "Noten lesen 5",
-            "names": [
-                [
-                    "noten_lesen_05_1"
-                ],
-                [
-                    "noten_lesen_05_2"
-                ],
-                [
-                    "noten_lesen_05_3"
-                ]
-            ]
-        },
-        "rhythmus_uebung_02": {
-            "product_id": 808,
-            "header": "Rhythmus Übung 2",
-            "names": [
-                [
-                    "rhythmus_uebung_02_1"
-                ],
-                [
-                    "rhythmus_uebung_02_2"
-                ],
-                [
-                    "rhythmus_uebung_02_3"
-                ]
-            ]
-        },
-        "lieder_02": {
-            "product_id": 809,
-            "header": "Lieder 2",
-            "names": [
-                [
-                    "lieder_02_1_ding_dong_ding",
-                    "Ding Dong Ding"
-                ],
-                [
-                    "lieder_02_2_auf_den_berg",
-                    "Auf den Berg"
-                ],
-                [
-                    "lieder_02_3_ich_bin_muede",
-                    "Ich bin müde"
-                ]
-            ]
-        },
-        "noten_lesen_06": {
-            "product_id": 810,
-            "header": "Noten lesen 6",
-            "names": [
-                [
-                    "noten_lesen_06_1"
-                ],
-                [
-                    "noten_lesen_06_2"
-                ],
-                [
-                    "noten_lesen_06_3"
-                ]
-            ]
-        },
-        "noten_lesen_07": {
-            "product_id": 811,
-            "header": "Noten lesen 7",
-            "names": [
-                [
-                    "noten_lesen_07_1"
-                ],
-                [
-                    "noten_lesen_07_2"
-                ],
-                [
-                    "noten_lesen_07_3"
-                ]
-            ]
-        },
-        "noten_lesen_08": {
-            "product_id": 812,
-            "header": "Noten lesen 8",
-            "names": [
-                [
-                    "noten_lesen_08_1"
-                ],
-                [
-                    "noten_lesen_08_2"
-                ],
-                [
-                    "noten_lesen_08_3"
-                ]
-            ]
-        },
-        "lieder_03": {
-            "product_id": 813,
-            "header": "Lieder 3",
-            "names": [
-                [
-                    "lieder_03_1_haenschen_klein",
-                    "Hänschen klein"
-                ]
-            ]
-        },
-        "rhythmus_uebung_03": {
-            "product_id": 814,
-            "header": "Rhythmus Übung 3",
-            "names": [
-                [
-                    "rhythmus_uebung_03_1"
-                ],
-                [
-                    "rhythmus_uebung_03_2"
-                ],
-                [
-                    "rhythmus_uebung_03_3"
-                ]
-            ]
-        },
-        "noten_lesen_09": {
-            "product_id": 815,
-            "header": "Noten lesen 9",
-            "names": [
-                [
-                    "noten_lesen_09_1"
-                ],
-                [
-                    "noten_lesen_09_2"
-                ]
-            ]
-        },
-        "noten_lesen_10": {
-            "product_id": 816,
-            "header": "Noten lesen 10",
-            "names": [
-                [
-                    "noten_lesen_10_1"
-                ],
-                [
-                    "noten_lesen_10_2"
-                ]
-            ]
-        },
-        "noten_lesen_11": {
-            "product_id": 817,
-            "header": "Noten lesen 11",
-            "names": [
-                [
-                    "noten_lesen_11_1"
-                ],
-                [
-                    "noten_lesen_11_2"
-                ]
-            ]
-        },
-        "noten_lesen_12": {
-            "product_id": 818,
-            "header": "Noten lesen 12",
-            "names": [
-                [
-                    "noten_lesen_12_1"
-                ],
-                [
-                    "noten_lesen_12_2"
-                ]
-            ]
-        },
-        "lieder_04": {
-            "product_id": 819,
-            "header": "Lieder 4",
-            "names": [
-                [
-                    "lieder_04_1_das_wetterlied",
-                    "Das Wetterlied"
-                ]
-            ]
-        },
-        "rhythmus_uebung_04": {
-            "product_id": 820,
-            "header": "Rhythmus Übung 4",
-            "names": [
-                [
-                    "rhythmus_uebung_04_1"
-                ],
-                [
-                    "rhythmus_uebung_04_2"
-                ],
-                [
-                    "rhythmus_uebung_04_3"
-                ]
-            ]
-        },
-        "noten_lesen_13": {
-            "product_id": 821,
-            "header": "Noten lesen 13",
-            "names": [
-                [
-                    "noten_lesen_13_1"
-                ],
-                [
-                    "noten_lesen_13_2"
-                ]
-            ]
-        },
-        "lieder_05": {
-            "product_id": 822,
-            "header": "Lieder 5",
-            "names": [
-                [
-                    "lieder_05_1_one_two_three_four",
-                    "One, Two, Three, Four"
-                ]
-            ]
+            }
         }
     },
     "tempos": {
