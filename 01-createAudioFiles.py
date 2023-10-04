@@ -33,7 +33,7 @@ tempos = data["tempos"]
 pages = data["pages"]
 
 # Signal vor Einzaehler
-preCountInFile = f'{audioDir}/count-in/pre_count_in.mp3'
+preCountInFile = f'{audioDir}/audio/count-in/pre_count_in.mp3'
 
 # Files for which audio is created
 activePages = [
@@ -62,7 +62,8 @@ activePages = [
     # "lieder_05",
 
     # drums
-    "rhythmus_uebung_01",
+    # "rhythmus_uebung_01",
+    "rhythmus_uebung_02",
 ]
 
 # TTS fuer Anmeldebutton: "Noten lesen 2"
@@ -133,7 +134,7 @@ def create_audio(name):
         subprocess.run(['mp3gain', '-r', mp3Path])
 
         # countInFile + mp3-File mergen
-        countInFile = f'{audioDir}/count-in/{tempo["value"]}_{timeSignature}.mp3'
+        countInFile = f'{audioDir}/audio/count-in/{tempo["value"]}_{timeSignature}.mp3'
         finalFile = f'{audioDir}/audio/{instrument}/{name}_{tempoName}.mp3'
 
         # merge command fuer Normalisierung mit ffmpeg

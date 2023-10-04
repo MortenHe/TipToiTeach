@@ -54,7 +54,8 @@ $activePages = [
     #"lieder_05",
 
     #drums
-    "rhythmus_uebung_01",
+    #"rhythmus_uebung_01",
+    "rhythmus_uebung_02",
 ];
 
 //HTML erstellen fuer PDF-Generierung

@@ -330,6 +330,21 @@
                         "rhythmus_uebung_01_3"
                     ]
                 ]
+            },
+            "rhythmus_uebung_02": {
+                "product_id": 902,
+                "header": "Rhythmus Übung 2",
+                "names": [
+                    [
+                        "rhythmus_uebung_02_1"
+                    ],
+                    [
+                        "rhythmus_uebung_02_2"
+                    ],
+                    [
+                        "rhythmus_uebung_02_3"
+                    ]
+                ]
             }
         }
     },
