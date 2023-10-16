@@ -1,10 +1,40 @@
 {
     "mode": "windows",
-    "instrument": "drums",
+    "instrument": "piano",
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
     "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirWindows": "C:/Users/Martin/Desktop/media/TipToiTeachTemp",
+    "activePages": [
+        " ### PIANO ###",
+        " noten_lesen_01",
+        " noten_lesen_02",
+        " noten_lesen_03",
+        " rhythmus_uebung_01",
+        " lieder_01",
+        " noten_lesen_04",
+        " noten_lesen_05",
+        " rhythmus_uebung_02",
+        " lieder_02",
+        " noten_lesen_06",
+        " noten_lesen_07",
+        " noten_lesen_08",
+        " lieder_03",
+        " rhythmus_uebung_03",
+        " noten_lesen_09",
+        " noten_lesen_10",
+        " noten_lesen_11",
+        " noten_lesen_12",
+        " lieder_04",
+        " rhythmus_uebung_04",
+        " noten_lesen_13",
+        " lieder_05",
+        "lieder_06",
+        " ### DRUMS ###",
+        " schlagzeug_uebung_01",
+        " schlagzeug_uebung_02",
+        " schlagzeug_uebung_03"
+    ],
     "pages": {
         "piano": {
             "noten_lesen_01": {
@@ -70,7 +100,7 @@
             },
             "lieder_01": {
                 "product_id": 805,
-                "header": "Lieder 1",
+                "header": "Lieder 1 - Wo bist du und weitere Lieder",
                 "names": [
                     [
                         "lieder_01_1_wo_bist_du",
@@ -133,7 +163,7 @@
             },
             "lieder_02": {
                 "product_id": 809,
-                "header": "Lieder 2",
+                "header": "Lieder 2 - Ding Dong Ding und weitere Lieder",
                 "names": [
                     [
                         "lieder_02_1_ding_dong_ding",
@@ -196,7 +226,7 @@
             },
             "lieder_03": {
                 "product_id": 813,
-                "header": "Lieder 3",
+                "header": "Lieder 3 - Hänschen klein",
                 "names": [
                     [
                         "lieder_03_1_haenschen_klein",
@@ -269,7 +299,7 @@
             },
             "lieder_04": {
                 "product_id": 819,
-                "header": "Lieder 4",
+                "header": "Lieder 4 - Das Wetterlied",
                 "names": [
                     [
                         "lieder_04_1_das_wetterlied",
@@ -306,43 +336,76 @@
             },
             "lieder_05": {
                 "product_id": 822,
-                "header": "Lieder 5",
+                "header": "Lieder 5 - One, two, three, four",
                 "names": [
                     [
                         "lieder_05_1_one_two_three_four",
                         "One, Two, Three, Four"
                     ]
                 ]
+            },
+            "lieder_06": {
+                "product_id": 823,
+                "header": "Lieder 6 - Regentropfen",
+                "names": [
+                    [
+                        "lieder_06_1_regentropfen_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_06_1_regentropfen_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_06_1_regentropfen",
+                        "Beide Hände"
+                    ]
+                ]
             }
         },
         "drums": {
-            "rhythmus_uebung_01": {
+            "schlagzeug_uebung_01": {
                 "product_id": 901,
-                "header": "Rhythmus Übung 1",
+                "header": "Schlagzeug Übung 1",
                 "names": [
                     [
-                        "rhythmus_uebung_01_1"
+                        "schlagzeug_uebung_01_1"
                     ],
                     [
-                        "rhythmus_uebung_01_2"
+                        "schlagzeug_uebung_01_2"
                     ],
                     [
-                        "rhythmus_uebung_01_3"
+                        "schlagzeug_uebung_01_3"
                     ]
                 ]
             },
-            "rhythmus_uebung_02": {
+            "schlagzeug_uebung_02": {
                 "product_id": 902,
-                "header": "Rhythmus Übung 2",
+                "header": "Schlagzeug Übung 2",
                 "names": [
                     [
-                        "rhythmus_uebung_02_1"
+                        "schlagzeug_uebung_02_1"
                     ],
                     [
-                        "rhythmus_uebung_02_2"
+                        "schlagzeug_uebung_02_2"
                     ],
                     [
-                        "rhythmus_uebung_02_3"
+                        "schlagzeug_uebung_02_3"
+                    ]
+                ]
+            },
+            "schlagzeug_uebung_03": {
+                "product_id": 903,
+                "header": "Schlagzeug Übung 3",
+                "names": [
+                    [
+                        "schlagzeug_uebung_03_1"
+                    ],
+                    [
+                        "schlagzeug_uebung_03_2"
+                    ],
+                    [
+                        "schlagzeug_uebung_03_3"
                     ]
                 ]
             }

@@ -17,6 +17,7 @@ use Mpdf\Mpdf;
 
 //sollen runde Bilder generiert werden?
 $roundedImages = false;
+$imageSuffix = $roundedImages ? "_rounded" : "";
 
 // Read the JSON file
 $json = file_get_contents("config.json");
@@ -28,38 +29,14 @@ $instrument = $jsonData["instrument"];
 $audioDir = $jsonData["audioDir" . ucfirst($mode)];
 chdir($audioDir);
 
-$activePages = [
-    #piano
-    //"noten_lesen_01",
-    //"noten_lesen_02",
-    //"noten_lesen_03",
-    //"rhythmus_uebung_01",
-    //"lieder_01",
-    //"noten_lesen_04",
-    //"noten_lesen_05",
-    //"rhythmus_uebung_02",
-    //"lieder_02",
-    //"noten_lesen_06",
-    //"noten_lesen_07",
-    //"noten_lesen_08",
-    //"lieder_03",
-    //"rhythmus_uebung_03",
-    //"noten_lesen_09",
-    //"noten_lesen_10",
-    //"noten_lesen_11",
-    #"noten_lesen_12",
-    #"lieder_04",
-    #"rhythmus_uebung_04",
-    #"noten_lesen_13",
-    #"lieder_05",
-
-    #drums
-    #"rhythmus_uebung_01",
-    "rhythmus_uebung_02",
-];
+$activePages = $jsonData["activePages"];
 
 //HTML erstellen fuer PDF-Generierung
 foreach ($activePages as $page) {
+    if (str_starts_with($page, " ")) {
+        continue;
+    }
+
     $data = $jsonData["pages"][$instrument][$page];
     $product_id = $data["product_id"];
     echo "Create print and sheet pdf files for project " . $product_id . "-" . $page . "\n";
@@ -69,11 +46,7 @@ foreach ($activePages as $page) {
     $html .= "</tr></table>";
 
     //Anmelde-Symbol rechts mit negativem Margin, damit h1 zentriert ist
-    if ($roundedImages) {
-        $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START_rounded.png' /></div>";
-    } else {
-        $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START.png' /></div>";
-    }
+    $html .= "<div style='margin-top: -75px;' class='t_r'><img src='oid-" . $product_id . "-START" . $imageSuffix . ".png' /></div>";
 
     $info = $data["info"] ?? "";
     if ($info) {
@@ -81,11 +54,7 @@ foreach ($activePages as $page) {
     }
 
     //Stop-Symbol
-    if ($roundedImages) {
-        $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop_rounded.png' />";
-    } else {
-        $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop.png' />";
-    }
+    $html .= "<h2 style='margin-left:20px; margin-bottom:10px'>Stop</h2><img src='oid-" . $product_id . "-stop" . $imageSuffix . ".png' />";
 
     //Yaml-Datei erzeugen
     $yaml_file = $product_id . "-" . $page . ".yaml";
@@ -105,9 +74,8 @@ foreach ($activePages as $page) {
     foreach ($data["names"] as $i => $name) {
 
         //Ueberschrift der Uebung ("Uebung 1" vs. "Rechte Hand")
-        //TODO: Abstand zwischen Uebungen vergroessern
         $label = $name[1] ?? "Übung " . ($i + 1);
-        $html .= "<div><h2 style='margin-left: 10px'>" . $label . "</h2>";
+        $html .= "<div style='margin-top: 25px'><h2 style='margin-left: 10px; margin-bottom: 15px'>" . $label . "</h2>";
 
         //Tempos einer Uebung in Tabelle sammeln
         $td_row = "";
@@ -121,11 +89,7 @@ foreach ($activePages as $page) {
             $td_row .= "<td><img style='margin-left: 20px; margin-bottom: 3px' src='png/speed_" . $tempoId . ".png' /><br>";
 
             //OID-Code
-            if ($roundedImages) {
-                $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . "_rounded.png' />";
-            } else {
-                $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . ".png' />";
-            }
+            $td_row .= "<img src='oid-" . $product_id . "-" . $code_id . $imageSuffix . ".png' />";
 
             //Checkbox
             $td_row .= "<img class='checkbox' width=20 height=20 src='" . __DIR__ . "/checkbox.svg' /></td>";

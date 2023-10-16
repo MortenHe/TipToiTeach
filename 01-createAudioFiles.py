@@ -36,36 +36,7 @@ pages = data["pages"]
 preCountInFile = f'{audioDir}/audio/count-in/pre_count_in.mp3'
 
 # Files for which audio is created
-activePages = [
-    # piano
-    # "noten_lesen_01",
-    # "noten_lesen_02",
-    # "noten_lesen_03",
-    # "rhythmus_uebung_01",
-    # "lieder_01",
-    # "noten_lesen_04",
-    # "noten_lesen_05",
-    # "rhythmus_uebung_02",
-    # "lieder_02",
-    # "noten_lesen_06",
-    # "noten_lesen_07",
-    # "noten_lesen_08",
-    # "lieder_03",
-    # "rhythmus_uebung_03",
-    # "noten_lesen_09",
-    # "noten_lesen_10",
-    # "noten_lesen_11",
-    # "noten_lesen_12",
-    # "lieder_04",
-    # "rhythmus_uebung_04",
-    # "noten_lesen_13",
-    # "lieder_05",
-
-    # drums
-    # "rhythmus_uebung_01",
-    "rhythmus_uebung_02",
-]
-
+activePages = data["activePages"]
 # TTS fuer Anmeldebutton: "Noten lesen 2"
 
 
@@ -169,6 +140,11 @@ if __name__ == '__main__':
         tts = []
         names = []
         for page in activePages:
+            # inactive pages uebergehen
+            if page.startswith(' '):
+                # print("ignore " + page)
+                continue
+
             data = pages[instrument][page]
 
             # Header sammeln pro Blatt fuer TTS bei TT-Anmeldung
