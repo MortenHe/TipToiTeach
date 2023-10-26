@@ -29,11 +29,13 @@
         " rhythmus_uebung_04",
         " noten_lesen_13",
         " lieder_05",
-        "lieder_06",
+        " lieder_06",
+        "lieder_07",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
-        " schlagzeug_uebung_03"
+        " schlagzeug_uebung_03",
+        " schlagzeug_uebung_04"
     ],
     "pages": {
         "piano": {
@@ -361,6 +363,24 @@
                         "Beide Hände"
                     ]
                 ]
+            },
+            "lieder_07": {
+                "product_id": 824,
+                "header": "Lieder 7",
+                "names": [
+                    [
+                        "lieder_07_1_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_07_1_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_07_1",
+                        "Beide Hände"
+                    ]
+                ]
             }
         },
         "drums": {
@@ -406,6 +426,21 @@
                     ],
                     [
                         "schlagzeug_uebung_03_3"
+                    ]
+                ]
+            },
+            "schlagzeug_uebung_04": {
+                "product_id": 904,
+                "header": "Schlagzeug Übung 4",
+                "names": [
+                    [
+                        "schlagzeug_uebung_04_1"
+                    ],
+                    [
+                        "schlagzeug_uebung_04_2"
+                    ],
+                    [
+                        "schlagzeug_uebung_04_3"
                     ]
                 ]
             }
