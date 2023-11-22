@@ -28,12 +28,8 @@ mode = data["mode"]
 instrument = data["instrument"]
 audioDir = data["audioDir" + str.capitalize(mode)]
 tempDir = data["tempDir" + str.capitalize(mode)]
-timeSignature = data["timeSignature"]
 tempos = data["tempos"]
 pages = data["pages"]
-
-# Signal vor Einzaehler
-preCountInFile = f'{audioDir}/audio/count-in/pre_count_in.mp3'
 
 # Files for which audio is created
 activePages = data["activePages"]
@@ -66,8 +62,14 @@ def create_tts(tts):
 # Audio files aus Musescore generieren in div. Tempi
 
 
-def create_audio(name):
+def create_audio(song):
+    name = song[0]
+    count_in = song[1]
+    pre_count_in = song[2]
+
     print(f'audio "{name}"')
+    # print(f'count_in "{count_in}"')
+    # print(f'pre_count_in "{pre_count_in}"')
 
     # mscz zu xml extrahieren
     with zipfile.ZipFile(f'{audioDir}/mscz-audio/{instrument}/{name}.mscz') as zip:
@@ -105,11 +107,14 @@ def create_audio(name):
         subprocess.run(['mp3gain', '-r', mp3Path])
 
         # countInFile + mp3-File mergen
-        countInFile = f'{audioDir}/audio/count-in/{tempo["value"]}_{timeSignature}.mp3'
+        countInFile = f'{audioDir}/audio/count-in/{tempo["value"]}_{count_in}.mp3'
         finalFile = f'{audioDir}/audio/{instrument}/{name}_{tempoName}.mp3'
 
         # merge command fuer Normalisierung mit ffmpeg
         # mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{preCountInFile}|{countInFile}|{mp3NormPath}" -acodec copy {finalFile}'
+
+        # Signal vor Einzaehler
+        preCountInFile = f'{audioDir}/audio/count-in/pre_count_in_{pre_count_in}.mp3'
 
         # merge command fuer Normalisierung mit mp3gain
         mergeCommand = f'ffmpeg -y -hide_banner -loglevel panic -i "concat:{preCountInFile}|{countInFile}|{mp3Path}" -acodec copy {finalFile}'
@@ -153,9 +158,17 @@ if __name__ == '__main__':
                 "header": data["header"]
             })
 
+            # time signature
+            count_in = data["count_in"] if "count_in" in data else [
+                "4_4"] * len(data["names"])
+
+            # pre count in note
+            pre_count_in = data["pre_count_in"] if "pre_count_in" in data else [
+                "c"] * len(data["names"])
+
             # Uebungen eines Blatts sammeln fuer Audio Creation aus MS
-            for nameArr in data["names"]:
-                names.append(nameArr[0])
+            for idx, nameArr in enumerate(data["names"]):
+                names.append([nameArr[0], count_in[idx], pre_count_in[idx]])
 
         # Run tts creation processes in parallel
         ttsPool = multiprocessing.Pool(processes=50)

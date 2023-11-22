@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "piano",
+    "instrument": "flute",
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
     "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
@@ -30,12 +30,14 @@
         " noten_lesen_13",
         " lieder_05",
         " lieder_06",
-        "lieder_07",
+        " lieder_07",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
         " schlagzeug_uebung_03",
-        " schlagzeug_uebung_04"
+        " schlagzeug_uebung_04",
+        " ### FLUTE ###",
+        "weihnacht"
     ],
     "pages": {
         "piano": {
@@ -366,18 +368,18 @@
             },
             "lieder_07": {
                 "product_id": 824,
-                "header": "Lieder 7",
+                "header": "Lieder 7 - Hundelied",
                 "names": [
                     [
-                        "lieder_07_1_lh",
+                        "lieder_07_1_hundelied_lh",
                         "Linke Hand"
                     ],
                     [
-                        "lieder_07_1_rh",
+                        "lieder_07_1_hundelied_rh",
                         "Rechte Hand"
                     ],
                     [
-                        "lieder_07_1",
+                        "lieder_07_1_hundelied",
                         "Beide Hände"
                     ]
                 ]
@@ -444,6 +446,23 @@
                     ]
                 ]
             }
+        },
+        "flute": {
+            "weihnacht": {
+                "product_id": 701,
+                "count_in": [
+                    "6_4"
+                ],
+                "pre_count_in": [
+                    "g"
+                ],
+                "header": "Weihnacht",
+                "names": [
+                    [
+                        "weihnacht"
+                    ]
+                ]
+            }
         }
     },
     "tempos": {
@@ -459,6 +478,5 @@
             "value": 80,
             "mult": 1.3333
         }
-    },
-    "timeSignature": "4_4"
+    }
 }
