@@ -28,6 +28,7 @@ mode = json_data["mode"]
 instrument = json_data["instrument"]
 audioDir = json_data["audioDir" + str.capitalize(mode)]
 tempDir = json_data["tempDir" + str.capitalize(mode)]
+tempDirLinux = json_data["tempDirLinux"]
 pages = json_data["pages"]
 
 # Files for which audio is created
@@ -42,8 +43,10 @@ def create_tts(tts):
     print(f'tts "{header}"')
 
     # Windows version
+    # Nov. 2023: pico2wave per wsl Aufruf
     if (mode == "windows"):
-        cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+        # cmd = f'balcon -t "{header}" -l ger -w {tempDir}/{page}-tts.wav'
+        cmd = f'wsl -e pico2wave -l de-DE -w {tempDirLinux}/{page}-tts.wav "{header}"'
 
     # Linux version
     elif (mode == 'linux'):
