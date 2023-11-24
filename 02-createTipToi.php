@@ -71,6 +71,9 @@ foreach ($activePages as $page) {
         "oid-{$product_id}-START",
         "oid-{$product_id}-stop"
     ];
+
+    //Tempos aus Config nehmen oder default Tempo 60, 70, 80
+    $tempos = isset($data["tempos"]) ? $data["tempos"] : array_fill(0, count($data["names"]), "60");
     foreach ($data["names"] as $i => $name) {
 
         //Ueberschrift der Uebung ("Uebung 1" vs. "Rechte Hand")
@@ -79,7 +82,7 @@ foreach ($activePages as $page) {
 
         //Tempos einer Uebung in Tabelle sammeln
         $td_row = "";
-        foreach ($jsonData["tempos"] as $tempoId => $tempoData) {
+        foreach ($jsonData["tempos"][$tempos[$i]] as $tempoId => $tempoData) {
 
             //Code-Benennung fuer YAML-Datei und code-images
             $code_id = $name[0] . "_" . $tempoId;

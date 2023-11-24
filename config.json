@@ -1,10 +1,6 @@
 {
     "mode": "windows",
     "instrument": "flute",
-    "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
-    "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
-    "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
-    "tempDirWindows": "C:/Users/Martin/Desktop/media/TipToiTeachTemp",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -37,8 +33,13 @@
         " schlagzeug_uebung_03",
         " schlagzeug_uebung_04",
         " ### FLUTE ###",
-        "weihnacht"
+        " 2023_11_16",
+        "2023_11_23"
     ],
+    "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
+    "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
+    "audioDirWindows": "C:/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
+    "tempDirWindows": "C:/Users/Martin/Desktop/media/TipToiTeachTemp",
     "pages": {
         "piano": {
             "noten_lesen_01": {
@@ -448,35 +449,105 @@
             }
         },
         "flute": {
-            "weihnacht": {
+            "2023_11_16": {
                 "product_id": 701,
                 "count_in": [
-                    "6_4"
+                    "6_4",
+                    "4_4"
                 ],
                 "pre_count_in": [
+                    "g",
                     "g"
                 ],
-                "header": "Weihnacht",
+                "header": "Hausaufgaben - 16.11.23",
                 "names": [
                     [
-                        "weihnacht"
+                        "seht_die_gute_zeit_ist_nah",
+                        "Seht, die gute Zeit ist nah"
+                    ],
+                    [
+                        "tragt_in_die_welt_nun_ein_licht",
+                        "Tragt in die Welt nun ein Licht"
+                    ]
+                ]
+            },
+            "2023_11_23": {
+                "product_id": 702,
+                "tempos": [
+                    "70",
+                    "70",
+                    "70"
+                ],
+                "count_in": [
+                    "4_4",
+                    "3_4",
+                    "2_4"
+                ],
+                "pre_count_in": [
+                    "a",
+                    "a",
+                    "d"
+                ],
+                "header": "Hausaufgaben - 23.11.23",
+                "names": [
+                    [
+                        "lasst_uns_froh_und_munter_sein",
+                        "Lasst uns froh und munter sein"
+                    ],
+                    [
+                        "ihr_kinderlein_kommet",
+                        "Ihr Kinderlein, kommet"
+                    ],
+                    [
+                        "we_wish_you_a_merry_christmas",
+                        "We Wish You A Merry Christmas"
                     ]
                 ]
             }
         }
     },
     "tempos": {
-        "snail": {
-            "value": 60,
-            "mult": 1
+        "60": {
+            "snail": {
+                "value": 60,
+                "mult": 1
+            },
+            "horse": {
+                "value": 70,
+                "mult": 1.1666
+            },
+            "cheetah": {
+                "value": 80,
+                "mult": 1.3333
+            }
         },
-        "horse": {
-            "value": 70,
-            "mult": 1.1666
+        "70": {
+            "snail": {
+                "value": 70,
+                "mult": 1.1666
+            },
+            "horse": {
+                "value": 80,
+                "mult": 1.333
+            },
+            "cheetah": {
+                "value": 90,
+                "mult": 1.5
+            }
         },
-        "cheetah": {
-            "value": 80,
-            "mult": 1.3333
+        "80": {
+            "snail": {
+                "value": 80,
+                "mult": 1.333
+            },
+            "horse": {
+                "value": 90,
+                "mult": 1.5
+            },
+            "cheetah": {
+                "value": 100,
+                "mult": 1.6667
+            }
         }
     }
 }

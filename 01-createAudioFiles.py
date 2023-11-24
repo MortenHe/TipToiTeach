@@ -21,18 +21,17 @@ import time
 import json
 
 with open('config.json', encoding='utf-8') as f:
-    data = json.load(f)
+    json_data = json.load(f)
 
 # windows vs. linux
-mode = data["mode"]
-instrument = data["instrument"]
-audioDir = data["audioDir" + str.capitalize(mode)]
-tempDir = data["tempDir" + str.capitalize(mode)]
-tempos = data["tempos"]
-pages = data["pages"]
+mode = json_data["mode"]
+instrument = json_data["instrument"]
+audioDir = json_data["audioDir" + str.capitalize(mode)]
+tempDir = json_data["tempDir" + str.capitalize(mode)]
+pages = json_data["pages"]
 
 # Files for which audio is created
-activePages = data["activePages"]
+activePages = json_data["activePages"]
 # TTS fuer Anmeldebutton: "Noten lesen 2"
 
 
@@ -64,12 +63,14 @@ def create_tts(tts):
 
 def create_audio(song):
     name = song[0]
-    count_in = song[1]
-    pre_count_in = song[2]
+    tempos = song[1]
+    count_in = song[2]
+    pre_count_in = song[3]
 
     print(f'audio "{name}"')
     # print(f'count_in "{count_in}"')
     # print(f'pre_count_in "{pre_count_in}"')
+    # print(f'tempos "{tempos}"')
 
     # mscz zu xml extrahieren
     with zipfile.ZipFile(f'{audioDir}/mscz-audio/{instrument}/{name}.mscz') as zip:
@@ -158,6 +159,10 @@ if __name__ == '__main__':
                 "header": data["header"]
             })
 
+            # tempos
+            tempos = data["tempos"] if "tempos" in data else [
+                "60"] * len(data["names"])
+
             # time signature
             count_in = data["count_in"] if "count_in" in data else [
                 "4_4"] * len(data["names"])
@@ -168,7 +173,8 @@ if __name__ == '__main__':
 
             # Uebungen eines Blatts sammeln fuer Audio Creation aus MS
             for idx, nameArr in enumerate(data["names"]):
-                names.append([nameArr[0], count_in[idx], pre_count_in[idx]])
+                names.append([nameArr[0], json_data["tempos"][tempos[idx]],
+                             count_in[idx], pre_count_in[idx]])
 
         # Run tts creation processes in parallel
         ttsPool = multiprocessing.Pool(processes=50)
