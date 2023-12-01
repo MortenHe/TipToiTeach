@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "flute",
+    "instrument": "piano",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -27,6 +27,8 @@
         " lieder_05",
         " lieder_06",
         " lieder_07",
+        " lieder_08",
+        "lieder_09",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
@@ -34,7 +36,7 @@
         " schlagzeug_uebung_04",
         " ### FLUTE ###",
         " 2023_11_16",
-        "2023_11_23"
+        " 2023_11_23"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -384,6 +386,47 @@
                         "Beide Hände"
                     ]
                 ]
+            },
+            "lieder_08": {
+                "product_id": 825,
+                "header": "Lieder 8 - Schlittenfahrt",
+                "tempos": [
+                    "70",
+                    "70",
+                    "70"
+                ],
+                "names": [
+                    [
+                        "lieder_08_1_schlittenfahrt_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_08_1_schlittenfahrt_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_08_1_schlittenfahrt",
+                        "Beide Hände"
+                    ]
+                ]
+            },
+            "lieder_09": {
+                "product_id": 826,
+                "header": "Lieder 9 - Morgen kommt der Weihnachtsmann",
+                "names": [
+                    [
+                        "lieder_09_1_morgen_kommt_der_weihnachtsmann_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_09_1_morgen_kommt_der_weihnachtsmann_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_09_1_morgen_kommt_der_weihnachtsmann",
+                        "Beide Hände"
+                    ]
+                ]
             }
         },
         "drums": {
@@ -473,11 +516,6 @@
             },
             "2023_11_23": {
                 "product_id": 702,
-                "tempos": [
-                    "70",
-                    "70",
-                    "70"
-                ],
                 "count_in": [
                     "4_4",
                     "3_4",
