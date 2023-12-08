@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "piano",
+    "instrument": "flute",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -28,7 +28,7 @@
         " lieder_06",
         " lieder_07",
         " lieder_08",
-        "lieder_09",
+        " lieder_09",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
@@ -36,7 +36,8 @@
         " schlagzeug_uebung_04",
         " ### FLUTE ###",
         " 2023_11_16",
-        " 2023_11_23"
+        " 2023_11_23",
+        "2023_12_06"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -539,6 +540,24 @@
                     [
                         "we_wish_you_a_merry_christmas",
                         "We Wish You A Merry Christmas"
+                    ]
+                ]
+            },
+            "2023_12_06": {
+                "product_id": 703,
+                "pre_count_in": [
+                    "g",
+                    "d"
+                ],
+                "header": "Hausaufgaben - 07.12.23",
+                "names": [
+                    [
+                        "jingle_bells_ref",
+                        "Jingle Bells (Refrain)"
+                    ],
+                    [
+                        "jingle_bells_verse",
+                        "Jingle Bells (Strophe)"
                     ]
                 ]
             }
