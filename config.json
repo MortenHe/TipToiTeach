@@ -37,7 +37,8 @@
         " ### FLUTE ###",
         " 2023_11_16",
         " 2023_11_23",
-        "2023_12_06"
+        " 2023_12_07",
+        "2023_12_14"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -543,7 +544,7 @@
                     ]
                 ]
             },
-            "2023_12_06": {
+            "2023_12_07": {
                 "product_id": 703,
                 "pre_count_in": [
                     "g",
@@ -558,6 +559,24 @@
                     [
                         "jingle_bells_verse",
                         "Jingle Bells (Strophe)"
+                    ]
+                ]
+            },
+            "2023_12_14": {
+                "product_id": 704,
+                "pre_count_in": [
+                    "g",
+                    "g"
+                ],
+                "header": "Hausaufgaben - 14.12.23",
+                "names": [
+                    [
+                        "alle_jahre_wieder",
+                        "Alle Jahre wieder"
+                    ],
+                    [
+                        "o_du_froehliche",
+                        "O du fröhliche"
                     ]
                 ]
             }
