@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "flute",
+    "instrument": "piano",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -29,6 +29,7 @@
         " lieder_07",
         " lieder_08",
         " lieder_09",
+        "lieder_10",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
@@ -38,7 +39,7 @@
         " 2023_11_16",
         " 2023_11_23",
         " 2023_12_07",
-        "2023_12_14"
+        " 2023_12_14"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -426,6 +427,24 @@
                     ],
                     [
                         "lieder_09_1_morgen_kommt_der_weihnachtsmann",
+                        "Beide Hände"
+                    ]
+                ]
+            },
+            "lieder_10": {
+                "product_id": 827,
+                "header": "Lieder 10 - Lasst uns froh und munter sein",
+                "names": [
+                    [
+                        "lieder_10_1_lasst_uns_froh_und_munter_sein_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_10_1_lasst_uns_froh_und_munter_sein_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_10_1_lasst_uns_froh_und_munter_sein",
                         "Beide Hände"
                     ]
                 ]
