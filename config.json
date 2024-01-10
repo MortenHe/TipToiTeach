@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "piano",
+    "instrument": "guitar",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -29,17 +29,20 @@
         " lieder_07",
         " lieder_08",
         " lieder_09",
-        "lieder_10",
+        " lieder_10",
+        " lieder_11",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
         " schlagzeug_uebung_03",
         " schlagzeug_uebung_04",
+        " schlagzeug_uebung_05",
         " ### FLUTE ###",
         " 2023_11_16",
         " 2023_11_23",
         " 2023_12_07",
-        " 2023_12_14"
+        " 2023_12_14",
+        "alle_meine_entchen"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -448,6 +451,24 @@
                         "Beide Hände"
                     ]
                 ]
+            },
+            "lieder_11": {
+                "product_id": 828,
+                "header": "Lieder 11 - Alle meine Entchen",
+                "names": [
+                    [
+                        "lieder_11_1_alle_meine_entchen_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_11_1_alle_meine_entchen_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_11_1_alle_meine_entchen",
+                        "Beide Hände"
+                    ]
+                ]
             }
         },
         "drums": {
@@ -508,6 +529,21 @@
                     ],
                     [
                         "schlagzeug_uebung_04_3"
+                    ]
+                ]
+            },
+            "schlagzeug_uebung_05": {
+                "product_id": 905,
+                "header": "Schlagzeug Übung 5",
+                "names": [
+                    [
+                        "schlagzeug_uebung_05_1"
+                    ],
+                    [
+                        "schlagzeug_uebung_05_2"
+                    ],
+                    [
+                        "schlagzeug_uebung_05_3"
                     ]
                 ]
             }
@@ -596,6 +632,28 @@
                     [
                         "o_du_froehliche",
                         "O du fröhliche"
+                    ]
+                ]
+            },
+            "alle_meine_entchen": {
+                "product_id": 705,
+                "header": "Alle meine Entchen",
+                "names": [
+                    [
+                        "alle_meine_entchen",
+                        "Alle meine Entchen"
+                    ]
+                ]
+            }
+        },
+        "guitar": {
+            "alle_meine_entchen": {
+                "product_id": 601,
+                "header": "Alle meine Entchen",
+                "names": [
+                    [
+                        "alle_meine_entchen",
+                        "Alle meine Entchen"
                     ]
                 ]
             }
