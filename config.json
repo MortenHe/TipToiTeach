@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "guitar",
+    "instrument": "piano",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -31,18 +31,25 @@
         " lieder_09",
         " lieder_10",
         " lieder_11",
+        " lieder_12",
+        "lieder_13",
+        " ",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
         " schlagzeug_uebung_03",
         " schlagzeug_uebung_04",
         " schlagzeug_uebung_05",
+        " ",
         " ### FLUTE ###",
         " 2023_11_16",
         " 2023_11_23",
         " 2023_12_07",
         " 2023_12_14",
-        "alle_meine_entchen"
+        " alle_meine_entchen",
+        " ",
+        " ### GUITAR ###",
+        " alle_meine_entchen"
     ],
     "audioDirLinux": "/mnt/c/Users/Martin/Desktop/Nextcloud/Martin/TipToiTeach",
     "tempDirLinux": "/mnt/c/Users/Martin/Desktop/media/TipToiTeachTemp",
@@ -466,6 +473,47 @@
                     ],
                     [
                         "lieder_11_1_alle_meine_entchen",
+                        "Beide Hände"
+                    ]
+                ]
+            },
+            "lieder_12": {
+                "product_id": 829,
+                "header": "Lieder 12 - Fuchs du hast die Gans gestohlen",
+                "names": [
+                    [
+                        "lieder_12_1_fuchs_du_hast_die_gans_gestohlen_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_12_1_fuchs_du_hast_die_gans_gestohlen_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_12_1_fuchs_du_hast_die_gans_gestohlen",
+                        "Beide Hände"
+                    ]
+                ]
+            },
+            "lieder_13": {
+                "product_id": 830,
+                "header": "Lieder 13 - Auf der Mauer auf der Lauer",
+                "tempos": [
+                    "70",
+                    "70",
+                    "70"
+                ],
+                "names": [
+                    [
+                        "lieder_13_1_auf_der_mauer_auf_der_lauer_lh",
+                        "Linke Hand"
+                    ],
+                    [
+                        "lieder_13_1_auf_der_mauer_auf_der_lauer_rh",
+                        "Rechte Hand"
+                    ],
+                    [
+                        "lieder_13_1_auf_der_mauer_auf_der_lauer",
                         "Beide Hände"
                     ]
                 ]

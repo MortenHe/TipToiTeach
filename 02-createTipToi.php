@@ -16,7 +16,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Mpdf\Mpdf;
 
 //sollen runde Bilder generiert werden?
-$roundedImages = false;
+$roundedImages = true;
 $imageSuffix = $roundedImages ? "_rounded" : "";
 
 // Read the JSON file
@@ -183,12 +183,12 @@ cleanDir();
 
 function createRoundImage($imgName)
 {
-    global $audioDir, $instrument;
-    $sourceImagePath = "{$audioDir}/{$instrument}/{$imgName}.png";
+    global $audioDir;
+    $sourceImagePath = "{$audioDir}/{$imgName}.png";
     $imagick = new \Imagick($sourceImagePath);
     $imagick->setImageBackgroundColor('transparent');
     $imagick->roundCorners($imagick->getImageWidth() / 2, $imagick->getImageHeight() / 2);
-    $savePath = "{$audioDir}/{$instrument}/{$imgName}_rounded.png";
+    $savePath = "{$audioDir}/{$imgName}_rounded.png";
     $imagick->writeImage($savePath);
     $imagick->destroy();
 }
