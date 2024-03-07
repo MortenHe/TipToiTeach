@@ -1,6 +1,6 @@
 {
     "mode": "windows",
-    "instrument": "piano",
+    "instrument": "drums",
     "activePages": [
         " ### PIANO ###",
         " noten_lesen_01",
@@ -32,14 +32,15 @@
         " lieder_10",
         " lieder_11",
         " lieder_12",
-        "lieder_13",
+        " lieder_13",
         " ",
         " ### DRUMS ###",
         " schlagzeug_uebung_01",
         " schlagzeug_uebung_02",
         " schlagzeug_uebung_03",
         " schlagzeug_uebung_04",
-        " schlagzeug_uebung_05",
+        "schlagzeug_uebung_05",
+        "schlagzeug_uebung_06",
         " ",
         " ### FLUTE ###",
         " 2023_11_16",
@@ -592,6 +593,21 @@
                     ],
                     [
                         "schlagzeug_uebung_05_3"
+                    ]
+                ]
+            },
+            "schlagzeug_uebung_06": {
+                "product_id": 906,
+                "header": "Schlagzeug Übung 6",
+                "names": [
+                    [
+                        "schlagzeug_uebung_06_1"
+                    ],
+                    [
+                        "schlagzeug_uebung_06_2"
+                    ],
+                    [
+                        "schlagzeug_uebung_06_3"
                     ]
                 ]
             }
